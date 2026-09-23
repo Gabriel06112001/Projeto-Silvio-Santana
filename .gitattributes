@@ -1,0 +1,8 @@
+# Fim de linha padronizado (LF) para evitar diferenças entre Windows, Mac e Linux
+* text=auto eol=lf
+
+# Arquivos binários
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
