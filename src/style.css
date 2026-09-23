@@ -1,0 +1,345 @@
+@import "tailwindcss";
+@import "./header.css";
+
+/*
+  Paleta derivada das fotos do Silvio:
+  - graphite/ink: fundo de estúdio grafite esverdeado das fotos
+  - ivory/sand: tons claros e quentes (em vez de branco puro)
+  - bronze: casco de tartaruga dos óculos e relógio — único acento
+*/
+@theme {
+  --color-ink: #181c1b;
+  --color-graphite: #242a28;
+  --color-graphite-light: #313836;
+  --color-ivory: #f7f4ee;
+  --color-sand: #e7e0d4;
+  --color-bronze: #b8935a;
+  --color-bronze-light: #d2b07a;
+  --color-bronze-dark: #7d5f31;
+  --color-stone: #5c605e;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+  }
+
+  body {
+    @apply bg-white font-sans text-lg text-graphite antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-bronze-light);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-bronze);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Botões */
+  .btn-cta {
+    @apply inline-flex items-center justify-center gap-3 rounded-full bg-bronze py-2 pr-2 pl-6 text-left text-base leading-snug font-semibold text-ink transition duration-300 hover:-translate-y-0.5 hover:bg-bronze-light active:translate-y-0 sm:pl-7 sm:text-lg;
+  }
+  /*
+    Seta vetorial dentro de um círculo. São duas setas no mesmo fundo:
+    no hover, a da frente sai pela direita e a de trás entra pela esquerda.
+  */
+  .btn-cta::after,
+  .arrow-circle {
+    --arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d2b07a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12h15M13.5 6l6 6-6 6'/%3E%3C/svg%3E");
+    --arrow-size: 20px;
+    content: "";
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    background-color: var(--color-ink);
+    background-image: var(--arrow), var(--arrow);
+    background-repeat: no-repeat;
+    background-size: var(--arrow-size);
+    background-position:
+      center,
+      calc(-1 * var(--arrow-size)) center;
+    transition:
+      background-position 0.55s var(--ease-out),
+      scale 0.45s var(--ease-out),
+      background-color 0.3s;
+  }
+  .btn-cta:hover::after,
+  .group:hover .arrow-circle {
+    background-position:
+      calc(100% + var(--arrow-size)) center,
+      center;
+    scale: 1.08;
+  }
+  .btn-cta:active::after {
+    scale: 0.9;
+  }
+
+  /* Variante clara: círculo bronze com seta escura */
+  .arrow-circle-light {
+    --arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181c1b' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12h15M13.5 6l6 6-6 6'/%3E%3C/svg%3E");
+    background-color: var(--color-bronze);
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .btn-sm {
+    @apply py-1.5 pr-1.5 pl-5 text-base;
+  }
+  .btn-sm::after {
+    --arrow-size: 16px;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full border border-graphite/20 px-7 py-3 font-semibold text-graphite transition hover:border-graphite hover:bg-graphite/5;
+  }
+
+  /* Tipografia de seção */
+  .eyebrow {
+    @apply flex items-center gap-3 text-sm font-semibold tracking-[0.2em] text-bronze-dark uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-10 bg-current;
+  }
+  .eyebrow-center {
+    @apply justify-center;
+  }
+  .eyebrow-center::after {
+    content: "";
+    @apply h-px w-10 bg-current;
+  }
+  .on-dark .eyebrow {
+    @apply text-bronze-light;
+  }
+
+  .section-title {
+    @apply font-serif text-[2rem] leading-tight font-medium text-ink md:text-5xl md:leading-[1.15];
+  }
+  .on-dark .section-title {
+    @apply text-ivory;
+  }
+
+  /* Respostas rápidas da pergunta 1, no hero */
+  .quiz-chip {
+    @apply inline-flex cursor-pointer items-center gap-2 rounded-full border border-ivory/25 bg-white/5 px-5 py-3 font-medium text-ivory transition duration-300 hover:-translate-y-0.5 hover:border-bronze hover:bg-bronze hover:text-ink;
+  }
+  .quiz-chip::after {
+    content: "→";
+    @apply -ml-2 w-0 overflow-hidden opacity-0 transition-all duration-300;
+  }
+  .quiz-chip:hover::after,
+  .quiz-chip:focus-visible::after {
+    @apply ml-0 w-4 opacity-100;
+  }
+
+  /* Opções do quiz (radio/checkbox estilizados como cartões) */
+  .quiz-option {
+    @apply flex cursor-pointer items-center gap-4 rounded-2xl border border-sand bg-white px-5 py-4 transition hover:border-bronze has-checked:border-bronze has-checked:bg-ivory has-checked:ring-1 has-checked:ring-bronze;
+  }
+  .quiz-option input {
+    @apply h-5 w-5 shrink-0 accent-bronze-dark;
+  }
+
+  .quiz-input {
+    @apply w-full rounded-xl border border-sand bg-white px-4 py-3 transition focus:border-bronze focus:ring-2 focus:ring-bronze/30 focus:outline-none;
+  }
+
+  /* Foto que se funde ao fundo grafite */
+  .photo-blend {
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 12%, #000 72%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 12%, #000 72%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  /*
+    Cards com foto revelada no hover (desktop) ou ao passar pelo centro da tela (touch).
+    A foto fica atrás do conteúdo, sob um véu grafite que garante contraste do texto.
+  */
+  .card-photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    scale: 1.12;
+    filter: saturate(0.7) sepia(0.12);
+    transition:
+      opacity 0.7s var(--ease-out),
+      scale 1.4s var(--ease-out);
+  }
+  .card-hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to bottom,
+      rgb(24 28 27 / 0.45) 0%,
+      rgb(24 28 27 / 0.82) 40%,
+      rgb(24 28 27 / 0.93) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.7s var(--ease-out);
+  }
+  .card-hover:hover .card-photo,
+  .card-hover.is-active .card-photo {
+    opacity: 1;
+    scale: 1;
+  }
+  .card-hover:hover::after,
+  .card-hover.is-active::after {
+    opacity: 1;
+  }
+
+  /* Textura sutil nas seções escuras */
+  .bg-studio {
+    background-color: var(--color-graphite);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 75% 30%, rgb(255 255 255 / 0.06), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 10% 100%, rgb(0 0 0 / 0.35), transparent 70%);
+  }
+}
+
+/* ================= Transições e animações ================= */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  interpolate-size: allow-keywords; /* permite animar até height: auto */
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes photo-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+@keyframes step-next {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+}
+@keyframes step-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+}
+
+/* Entrada do hero ao carregar a página */
+.js header {
+  animation: fade-in 0.8s var(--ease-out) both;
+}
+.js #inicio > div > div > * {
+  animation: fade-up 1s var(--ease-out) both;
+}
+.js #inicio > div > div > :nth-child(1) { animation-delay: 0.1s; }
+.js #inicio > div > div > :nth-child(2) { animation-delay: 0.22s; }
+.js #inicio > div > div > :nth-child(3) { animation-delay: 0.34s; }
+.js #inicio > div > div > :nth-child(4) { animation-delay: 0.46s; }
+.js #inicio > div > img {
+  animation: photo-in 1.4s var(--ease-out) 0.2s both;
+}
+
+/* Revelação ao rolar (a classe .is-visible é adicionada pelo main.js) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.9s var(--ease-out) var(--reveal-delay, 0ms),
+    transform 0.9s var(--ease-out) var(--reveal-delay, 0ms),
+    translate 0.3s var(--ease-out),
+    border-color 0.3s,
+    background-color 0.3s;
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Troca de pergunta no quiz */
+.step-next {
+  animation: step-next 0.5s var(--ease-out) both;
+}
+.step-prev {
+  animation: step-prev 0.5s var(--ease-out) both;
+}
+.fade-in {
+  animation: fade-up 0.7s var(--ease-out) both;
+}
+
+/* Acordeão do FAQ abrindo suavemente (navegadores sem suporte abrem instantaneamente) */
+details::details-content {
+  height: 0;
+  overflow: clip;
+  opacity: 0;
+  transition:
+    height 0.45s var(--ease-out),
+    opacity 0.45s var(--ease-out),
+    content-visibility 0.45s allow-discrete;
+}
+details[open]::details-content {
+  height: auto;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js header,
+  .js #inicio > div > div > *,
+  .js #inicio > div > img,
+  .step-next,
+  .step-prev,
+  .fade-in {
+    animation: none;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,348 @@
+/*
+  Cabeçalho "vivo"
+  - Topo da página: transparente, sobre o hero grafite.
+  - Após rolar (.is-scrolled): encolhe numa cápsula de vidro escuro,
+    mostra o anel de progresso de leitura em volta do logo e esconde o subtítulo.
+  - Menu desktop: pílula bronze desliza até a seção visível.
+  - Menu mobile: abre num círculo que se expande a partir do botão.
+*/
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  padding: 0.75rem 0.75rem 0;
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .site-header {
+    padding: 1rem 1.5rem 0;
+  }
+}
+
+.site-header__bar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 0.625rem 0.625rem 0.625rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  color: var(--color-ivory);
+  background-color: rgb(24 28 27 / 0);
+  transition:
+    max-width 0.8s var(--ease-out),
+    padding 0.6s var(--ease-out),
+    background-color 0.5s,
+    border-color 0.5s,
+    backdrop-filter 0.5s;
+}
+.is-scrolled .site-header__bar {
+  max-width: 70rem;
+  padding: 0.375rem 0.375rem 0.375rem 0.5rem;
+  background-color: rgb(24 28 27 / 0.78);
+  border-color: rgb(255 255 255 / 0.09);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+}
+
+/* ---------- Marca ---------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  min-width: 0;
+  margin-right: auto;
+}
+.brand__mark {
+  position: relative;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+}
+.brand__mark img {
+  width: 100%;
+  height: 100%;
+  transition: rotate 0.8s var(--ease-out);
+}
+.brand:hover .brand__mark img {
+  rotate: 360deg;
+}
+
+/* Anel de progresso de leitura */
+.brand__ring {
+  position: absolute;
+  inset: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  rotate: -90deg;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.is-scrolled .brand__ring {
+  opacity: 1;
+}
+.brand__ring circle {
+  fill: none;
+  stroke-width: 1.5;
+}
+.brand__ring-track {
+  stroke: rgb(255 255 255 / 0.12);
+}
+.brand__ring-bar {
+  stroke: var(--color-bronze-light);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - var(--progress, 0) * 100);
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+.brand__name {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+@media (min-width: 768px) {
+  .brand__name {
+    font-size: 1.3rem;
+  }
+}
+/* Subtítulo recolhe suavemente ao rolar */
+.brand__role {
+  display: grid;
+  grid-template-rows: 1fr;
+  margin-top: 0.2rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-bronze-light);
+  transition:
+    grid-template-rows 0.5s var(--ease-out),
+    opacity 0.4s,
+    margin 0.5s;
+}
+.brand__role > span {
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* Celulares pequenos (até 400px): nome e subtítulo mais compactos para caber inteiros */
+@media (max-width: 400px) {
+  .brand {
+    gap: 0.625rem;
+  }
+  .brand__name {
+    font-size: 1.02rem;
+  }
+  .brand__role {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+}
+@media (max-width: 350px) {
+  .brand__role {
+    font-size: 0.55rem;
+    letter-spacing: 0.03em;
+  }
+}
+.is-scrolled .brand__role {
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+}
+
+/* ---------- Menu desktop ---------- */
+.site-nav {
+  position: relative;
+  display: none;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.25rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.04);
+}
+@media (min-width: 1200px) {
+  .site-nav {
+    display: flex;
+  }
+}
+.site-nav a {
+  position: relative;
+  z-index: 1;
+  padding: 0.55rem 1.05rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgb(247 244 238 / 0.72);
+  transition: color 0.4s;
+}
+.site-nav a:hover {
+  color: var(--color-ivory);
+}
+.site-nav a.is-active {
+  color: var(--color-ink);
+}
+.site-nav__indicator {
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  left: 0;
+  width: var(--w, 0);
+  translate: var(--x, 0) 0;
+  border-radius: 9999px;
+  background: var(--color-bronze);
+  opacity: 0;
+  transition:
+    translate 0.6s var(--ease-out),
+    width 0.6s var(--ease-out),
+    opacity 0.4s;
+}
+.site-nav.has-active .site-nav__indicator {
+  opacity: 1;
+}
+
+.header-cta {
+  display: none !important;
+}
+@media (min-width: 768px) {
+  .header-cta {
+    display: inline-flex !important;
+  }
+}
+
+/* ---------- Botão do menu (duas linhas que viram X) ---------- */
+.menu-toggle {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.08);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.menu-toggle:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+.menu-toggle span {
+  position: absolute;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--color-ivory);
+  transition:
+    translate 0.45s var(--ease-out),
+    rotate 0.45s var(--ease-out),
+    width 0.45s var(--ease-out);
+}
+.menu-toggle span:first-child {
+  width: 18px;
+  translate: 0 -4px;
+}
+.menu-toggle span:last-child {
+  width: 12px;
+  translate: 3px 4px;
+}
+.menu-toggle[aria-expanded="true"] span:first-child {
+  translate: 0 0;
+  rotate: 45deg;
+}
+.menu-toggle[aria-expanded="true"] span:last-child {
+  width: 18px;
+  translate: 0 0;
+  rotate: -45deg;
+}
+@media (min-width: 1200px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* ---------- Menu mobile em tela cheia ---------- */
+.menu-mobile {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  padding: 7rem 1.5rem 2rem;
+  color: var(--color-ivory);
+  background-color: var(--color-ink);
+  background-image: radial-gradient(ellipse 90% 60% at 80% 0%, rgb(184 147 90 / 0.14), transparent 70%);
+  clip-path: circle(0px at var(--cx, 100%) var(--cy, 0px));
+  transition: clip-path 0.75s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.menu-mobile.is-open {
+  clip-path: circle(150vmax at var(--cx, 100%) var(--cy, 0px));
+}
+.menu-open {
+  overflow: hidden;
+}
+
+.menu-mobile__nav {
+  display: flex;
+  flex-direction: column;
+}
+.menu-mobile__nav a,
+.menu-mobile__footer {
+  opacity: 0;
+  translate: 0 28px;
+  transition:
+    opacity 0.6s var(--ease-out),
+    translate 0.6s var(--ease-out),
+    color 0.3s;
+  transition-delay: calc(0.18s + var(--i, 0) * 0.06s);
+}
+.menu-mobile:not(.is-open) .menu-mobile__nav a,
+.menu-mobile:not(.is-open) .menu-mobile__footer {
+  transition-delay: 0s;
+}
+.menu-mobile.is-open .menu-mobile__nav a,
+.menu-mobile.is-open .menu-mobile__footer {
+  opacity: 1;
+  translate: 0 0;
+}
+.menu-mobile__nav a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 8vw, 3rem);
+  line-height: 1.1;
+}
+.menu-mobile__nav a span {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze-light);
+}
+.menu-mobile__nav a:hover,
+.menu-mobile__nav a.is-active {
+  color: var(--color-bronze-light);
+}
+.menu-mobile__footer {
+  margin-top: 2.5rem;
+}
+.menu-mobile__footer p {
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  color: rgb(247 244 238 / 0.5);
+}
