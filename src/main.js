@@ -1,5 +1,4 @@
-import './style.css'
-import { WHATSAPP_NUMBER, LEAD_ENDPOINT, GA_MEASUREMENT_ID } from './config.js'
+import { WHATSAPP_NUMBER, GA_MEASUREMENT_ID } from './config.js'
 
 // ---------- Google Analytics 4 ----------
 if (GA_MEASUREMENT_ID) {
@@ -24,273 +23,31 @@ function track(event, params = {}) {
 // ---------- Rodapé ----------
 document.querySelector('#ano').textContent = new Date().getFullYear()
 
-// ---------- Quiz de triagem ----------
-const form = document.querySelector('#triagem')
-const steps = [...form.querySelectorAll('[data-step]')]
-const btnVoltar = document.querySelector('#quiz-voltar')
-const btnAvancar = document.querySelector('#quiz-avancar')
-const btnEnviar = document.querySelector('#quiz-enviar')
-const erro = document.querySelector('#quiz-erro')
-const progressoTexto = document.querySelector('#progresso-texto')
-const progressoBarra = document.querySelector('#progresso-barra')
-const STEP_TEMPO_CONTRIBUICAO = 4
+// ---------- WhatsApp ----------
+// Todos os botões com [data-whatsapp] abrem a conversa com uma mensagem pronta.
+const MENSAGEM_PADRAO =
+  'Olá, Silvio! Vim pelo site e gostaria de saber se posso ter direito à aposentadoria da pessoa com deficiência.'
 
-let atual = 0
-
-const checked = (name) => [...form.querySelectorAll(`input[name="${name}"]:checked`)]
-const nuncaContribuiu = () => {
-  const v = checked('vinculo')
-  return v.length === 1 && v[0].id === 'vinculo-nunca'
+// Texto usado quando a pessoa clica num card de situação (mensagem personalizada)
+const CONDICOES = {
+  'cond-coluna': 'problema na coluna ou nos ossos',
+  'cond-visao': 'uma condição de visão',
+  'cond-audicao': 'perda auditiva',
+  'cond-mobilidade': 'dificuldade de mobilidade',
+  'cond-acidente': 'sequelas de um acidente',
+  'cond-mental': 'uma condição intelectual, mental ou psicossocial',
 }
 
-function animar(el, classe) {
-  el.classList.remove('step-next', 'step-prev', 'fade-in')
-  void el.offsetWidth // reinicia a animação
-  el.classList.add(classe)
-}
+const linkWhatsApp = (texto) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`
 
-function mostrarStep(i, { focar = true } = {}) {
-  const direcao = i >= atual ? 'step-next' : 'step-prev'
-  atual = i
-  steps.forEach((s, idx) => (s.hidden = idx !== i))
-  if (focar) animar(steps[i], direcao)
-  const ultimo = i === steps.length - 1
-  btnVoltar.hidden = i === 0
-  btnAvancar.hidden = ultimo
-  btnEnviar.hidden = !ultimo
-  erro.textContent = ''
+document.querySelectorAll('[data-whatsapp]').forEach((a) => (a.href = linkWhatsApp(MENSAGEM_PADRAO)))
 
-  // Incentivo nas últimas etapas (reduz abandono)
-  const incentivo = ultimo ? ' · última etapa' : i >= steps.length - 3 ? ' · falta pouco' : ''
-  progressoTexto.textContent = `Pergunta ${i + 1} de ${steps.length}${incentivo}`
-  progressoBarra.style.width = `${((i + 1) / steps.length) * 100}%`
-  progressoBarra.parentElement.setAttribute('aria-valuenow', i + 1)
-
-  if (focar) {
-    // Funil no Analytics: mostra em que pergunta as pessoas param
-    if (!quizIniciado && i > 0) {
-      quizIniciado = true
-      track('quiz_start', { origem: 'formulario' })
-    }
-    track('quiz_step', { step: i + 1 })
-    const legend = steps[i].querySelector('legend')
-    legend.tabIndex = -1
-    legend.focus({ preventScroll: true })
-    if (form.getBoundingClientRect().top < 0) form.scrollIntoView({ behavior: 'smooth' })
-  }
-}
-
-function validar(i) {
-  const step = steps[i]
-  const radios = step.querySelectorAll('input[type="radio"]')
-  if (radios.length && !step.querySelector('input[type="radio"]:checked')) {
-    return 'Escolha uma das opções para continuar.'
-  }
-  const checkboxes = step.querySelectorAll('input[type="checkbox"][name="condicao"], input[type="checkbox"][name="vinculo"]')
-  if (checkboxes.length && !step.querySelector('input[type="checkbox"]:checked')) {
-    return 'Marque pelo menos uma opção para continuar.'
-  }
-  if (step.contains(form.condicaoOutro) && document.querySelector('#cond-outro').checked && !form.condicaoOutro.value.trim()) {
-    form.condicaoOutro.focus()
-    return 'Descreva brevemente a sua condição.'
-  }
-  if (i === steps.length - 1) {
-    if (!form.nome.value.trim()) return form.nome.focus(), 'Informe o seu nome.'
-    const digitos = form.whatsapp.value.replace(/\D/g, '')
-    if (digitos.length < 10 || digitos.length > 11) return form.whatsapp.focus(), 'Informe um WhatsApp válido, com DDD.'
-    if (!form.cidade.value.trim()) return form.cidade.focus(), 'Informe a sua cidade e estado.'
-    if (!form.consentimento.checked) return form.consentimento.focus(), 'Para continuar, é preciso autorizar o uso das informações.'
-  }
-  return ''
-}
-
-btnAvancar.addEventListener('click', () => {
-  const msg = validar(atual)
-  if (msg) return (erro.textContent = msg)
-  let proximo = atual + 1
-  // Quem nunca contribuiu pula a pergunta sobre tempo de contribuição
-  if (proximo === STEP_TEMPO_CONTRIBUICAO && nuncaContribuiu()) proximo++
-  mostrarStep(proximo)
+// Conversão principal no Analytics: clique em qualquer botão de WhatsApp
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('[data-whatsapp]')
+  if (!link) return
+  track('generate_lead', { origem: link.dataset.whatsapp })
 })
-
-btnVoltar.addEventListener('click', () => {
-  let anterior = atual - 1
-  if (anterior === STEP_TEMPO_CONTRIBUICAO && nuncaContribuiu()) anterior--
-  mostrarStep(anterior)
-})
-
-// Perguntas de escolha única avançam sozinhas ao clicar/tocar numa opção.
-// Só com mouse/toque: quem navega pelo teclado (setas) continua usando o botão "Continuar".
-let toqueEm = null
-form.addEventListener('pointerdown', (e) => (toqueEm = e.target.closest('.quiz-option')))
-form.addEventListener('change', (e) => {
-  const step = steps[atual]
-  const soRadios = step.querySelector('input[type="radio"]') && !step.querySelector('input:not([type="radio"]), textarea')
-  const foiToque = toqueEm && toqueEm.contains(e.target)
-  toqueEm = null
-  if (e.target.type !== 'radio' || !soRadios || !foiToque) return
-  const passo = atual
-  setTimeout(() => passo === atual && btnAvancar.click(), 380)
-})
-
-// Pergunta 1 respondida direto no hero: marca a resposta e leva à pergunta 2
-let quizIniciado = false
-document.querySelectorAll('[data-inicio]').forEach((chip) =>
-  chip.addEventListener('click', () => {
-    const opcao = form.querySelector(`input[name="limitacao"][value="${chip.dataset.inicio}"]`)
-    opcao.checked = true
-    quizIniciado = true
-    track('quiz_start', { origem: 'hero' })
-    mostrarStep(1)
-    document.querySelector('#analise').scrollIntoView({ behavior: 'smooth' })
-  })
-)
-// Enter em campos de texto avança em vez de enviar
-form.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && e.target.tagName === 'INPUT' && atual < steps.length - 1) {
-    e.preventDefault()
-    btnAvancar.click()
-  }
-})
-
-// "Outro" revela o campo de descrição
-const condOutro = document.querySelector('#cond-outro')
-const condOutroWrap = document.querySelector('#condicao-outro-wrap')
-condOutro.addEventListener('change', () => {
-  condOutroWrap.hidden = !condOutro.checked
-  if (condOutro.checked) form.condicaoOutro.focus()
-})
-
-// "Nunca contribuí" é exclusivo com as outras formas de trabalho
-form.querySelectorAll('input[name="vinculo"]').forEach((input) =>
-  input.addEventListener('change', () => {
-    if (!input.checked) return
-    form.querySelectorAll('input[name="vinculo"]').forEach((other) => {
-      if (other !== input && (input.id === 'vinculo-nunca' || other.id === 'vinculo-nunca')) other.checked = false
-    })
-  })
-)
-
-// Máscara do WhatsApp: (00) 00000-0000
-form.whatsapp.addEventListener('input', () => {
-  const d = form.whatsapp.value.replace(/\D/g, '').slice(0, 11)
-  let v = d
-  if (d.length > 2) v = `(${d.slice(0, 2)}) ${d.slice(2)}`
-  if (d.length > 6) v = `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`
-  form.whatsapp.value = v
-})
-
-// Cards da Seção 2 pré-marcam a condição na pergunta 2
-document.querySelectorAll('[data-condicao]').forEach((card) =>
-  card.addEventListener('click', () => {
-    const input = document.querySelector(`#${card.dataset.condicao}`)
-    if (!input.checked) {
-      input.checked = true
-      input.dispatchEvent(new Event('change'))
-    }
-    track('select_content', { content_type: 'condicao', item_id: card.dataset.condicao })
-  })
-)
-
-function montarLead() {
-  const radio = (name) => checked(name)[0]
-  const condicoes = checked('condicao').map((i) =>
-    i.id === 'cond-outro' ? `Outro: ${form.condicaoOutro.value.trim()}` : i.value
-  )
-  return {
-    data: new Date().toISOString(),
-    nome: form.nome.value.trim(),
-    whatsapp: form.whatsapp.value,
-    cidade: form.cidade.value.trim(),
-    idade: radio('idade').value,
-    limitacao: radio('limitacao').value,
-    condicoes,
-    tempoCondicao: radio('tempoCondicao').value,
-    vinculo: checked('vinculo').map((i) => i.value),
-    tempoContribuicao: nuncaContribuiu() ? 'Nunca contribuiu' : radio('tempoContribuicao').value,
-    documentos: radio('documentos').value,
-    mensagem: form.mensagem.value.trim(),
-    consentimento: true,
-    origem: window.location.href,
-  }
-}
-
-function montarMensagemWhatsApp(lead) {
-  const msg = (name) => checked(name)[0].dataset.msg
-  const tipo = checked('condicao')
-    .map((i) => (i.id === 'cond-outro' ? form.condicaoOutro.value.trim() : i.value.toLowerCase()))
-    .join(', ')
-  const vinculo = checked('vinculo').map((i) => i.dataset.msg).join(', ')
-
-  return (
-    `Olá, Dr. Silvio! Preenchi a análise inicial no site. ` +
-    `Meu nome é ${lead.nome}, de ${lead.cidade}, tenho ${msg('idade')}. ` +
-    `Minha condição: ${tipo}, ${msg('tempoCondicao')}. ` +
-    `${msg('tempoContribuicao')} (${vinculo}). ` +
-    `Documentos médicos: ${msg('documentos')}. ` +
-    `Gostaria de saber se posso ter direito à aposentadoria da pessoa com deficiência.`
-  )
-}
-
-function salvarLead(lead) {
-  if (!LEAD_ENDPOINT) {
-    console.warn('LEAD_ENDPOINT não configurado em src/config.js — lead não foi salvo.', lead)
-    return
-  }
-  // keepalive garante o envio mesmo que o WhatsApp abra em seguida
-  fetch(LEAD_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // evita preflight CORS (compatível com Google Apps Script)
-    body: JSON.stringify(lead),
-    keepalive: true,
-  }).catch((err) => console.error('Falha ao salvar lead', err))
-}
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  const msg = validar(atual)
-  if (msg) return (erro.textContent = msg)
-
-  const lead = montarLead()
-  salvarLead(lead)
-  track('generate_lead', { nunca_contribuiu: nuncaContribuiu() })
-
-  form.hidden = true
-
-  if (nuncaContribuiu()) {
-    const tela = document.querySelector('#tela-sem-contribuicao')
-    tela.hidden = false
-    animar(tela, 'fade-in')
-    tela.focus()
-    return
-  }
-
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(montarMensagemWhatsApp(lead))}`
-  const tela = document.querySelector('#tela-obrigado')
-  document.querySelector('#link-whatsapp').href = url
-  tela.hidden = false
-  animar(tela, 'fade-in')
-  tela.focus()
-  window.open(url, '_blank', 'noopener')
-})
-
-mostrarStep(0, { focar: false })
-
-// ---------- Botão fixo no mobile ----------
-// Aparece depois do hero e some enquanto o formulário está visível
-const barra = document.querySelector('#barra-fixa')
-const barraLink = barra.querySelector('a')
-const visivel = new Map()
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => visivel.set(entry.target.id, entry.isIntersecting))
-  const mostrar = !visivel.get('inicio') && !visivel.get('analise')
-  barra.classList.toggle('translate-y-full', !mostrar)
-  barra.setAttribute('aria-hidden', String(!mostrar))
-  barraLink.tabIndex = mostrar ? 0 : -1
-})
-observer.observe(document.querySelector('#inicio'))
-observer.observe(document.querySelector('#analise'))
 
 // ---------- Revelação dos elementos ao rolar ----------
 const alvos = new Set(document.querySelectorAll('[data-reveal]'))
@@ -299,9 +56,8 @@ document.querySelectorAll(`${secoes} .section-title`).forEach((h) => alvos.add(h
 document
   .querySelectorAll(`${secoes} ul.grid > li, ${secoes} ol.grid > li, ${secoes} article, ${secoes} details, ${secoes} figure`)
   .forEach((el) => alvos.add(el))
-document.querySelectorAll(`${secoes} img`).forEach((img) => alvos.add(img.closest('.relative') ?? img))
+document.querySelectorAll(`${secoes} img`).forEach((img) => alvos.add(img.closest('div.relative') ?? img))
 document.querySelectorAll(`${secoes} div.text-center > a.btn-cta`).forEach((a) => alvos.add(a.parentElement))
-alvos.add(form.parentElement)
 
 // Itens irmãos entram em sequência (efeito cascata)
 const contagem = new Map()
@@ -327,7 +83,10 @@ alvos.forEach((el) => revelar.observe(el))
 // Sem hover no celular: a foto aparece quando o card passa pelo centro da tela
 if (window.matchMedia('(hover: none)').matches) {
   const centro = new IntersectionObserver(
-    (entries) => entries.forEach((entry) => entry.target.classList.toggle('is-active', entry.isIntersecting)),
+    (entries) =>
+      entries.forEach((entry) => {
+        if (!entry.target.classList.contains('is-selected')) entry.target.classList.toggle('is-active', entry.isIntersecting)
+      }),
     { rootMargin: '-40% 0px -40% 0px' }
   )
   document.querySelectorAll('.card-hover').forEach((card) => centro.observe(card))
@@ -356,33 +115,66 @@ window.addEventListener(
 )
 atualizarHeader()
 
-// Pílula bronze que desliza até o link da seção visível
+// ---------- Navegação: seção ativa, clique suave e pílula que acompanha o mouse ----------
 const nav = header.querySelector('.site-nav')
 const indicador = nav.querySelector('.site-nav__indicator')
 const linksNav = [...nav.querySelectorAll('a')]
 const linksMenu = [...document.querySelectorAll('.menu-mobile__nav a')]
-const secaoParaLink = { entenda: 'situacoes' } // seção sem link próprio herda a anterior
-let secaoAtiva = null
+const secoesPagina = [...document.querySelectorAll('main > section[id]')]
+// Seções sem link próprio herdam o link mais próximo; o topo não marca nenhum
+const secaoParaLink = { inicio: null, entenda: 'situacoes', analise: 'regras', contato: 'duvidas' }
+let linkAtivo = null
+let travaRolagem = 0 // durante o scroll suave de um clique, não recalcula (evita a pílula "pular" pelas seções do meio)
 
-function marcarAtivo(id) {
-  secaoAtiva = id
-  const alvo = `#${secaoParaLink[id] ?? id}`
-  ;[...linksNav, ...linksMenu].forEach((a) => a.classList.toggle('is-active', a.hash === alvo))
-  const link = linksNav.find((a) => a.hash === alvo)
+function moverIndicador(link) {
   nav.classList.toggle('has-active', Boolean(link))
-  if (link) {
-    indicador.style.setProperty('--x', `${link.offsetLeft}px`)
-    indicador.style.setProperty('--w', `${link.offsetWidth}px`)
-  }
+  if (!link) return
+  indicador.style.setProperty('--x', `${link.offsetLeft}px`)
+  indicador.style.setProperty('--w', `${link.offsetWidth}px`)
 }
 
-const observarSecoes = new IntersectionObserver(
-  (entries) => entries.forEach((entry) => entry.isIntersecting && marcarAtivo(entry.target.id)),
-  { rootMargin: '-45% 0px -54% 0px' }
+function ativarLink(hash) {
+  linkAtivo = hash
+  ;[...linksNav, ...linksMenu].forEach((a) => {
+    const ativo = a.hash === hash
+    a.classList.toggle('is-active', ativo)
+    if (ativo) a.setAttribute('aria-current', 'true')
+    else a.removeAttribute('aria-current')
+  })
+  moverIndicador(linksNav.find((a) => a.hash === hash))
+}
+
+// Seção atual = a última cujo topo já passou de 35% da altura da tela
+function detectarSecao() {
+  if (Date.now() < travaRolagem) return
+  const linha = window.innerHeight * 0.35
+  let atual = secoesPagina[0]
+  for (const secao of secoesPagina) if (secao.getBoundingClientRect().top <= linha) atual = secao
+  // No fim da página, a última seção sempre fica ativa
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) atual = secoesPagina.at(-1)
+  const id = atual.id in secaoParaLink ? secaoParaLink[atual.id] : atual.id
+  const hash = id ? `#${id}` : null
+  if (hash !== linkAtivo) ativarLink(hash)
+}
+
+let quadroNav = 0
+window.addEventListener('scroll', () => (quadroNav ||= requestAnimationFrame(() => ((quadroNav = 0), detectarSecao()))), { passive: true })
+window.addEventListener('resize', () => moverIndicador(linksNav.find((a) => a.hash === linkAtivo)))
+document.fonts?.ready.then(() => moverIndicador(linksNav.find((a) => a.hash === linkAtivo)))
+detectarSecao()
+
+// Clique: marca o destino na hora e trava a detecção até o scroll suave terminar
+;[...linksNav, ...linksMenu].forEach((a) =>
+  a.addEventListener('click', () => {
+    ativarLink(a.hash)
+    travaRolagem = Date.now() + 1000
+    window.addEventListener('scrollend', () => ((travaRolagem = 0), detectarSecao()), { once: true })
+  })
 )
-document.querySelectorAll('main > section[id]').forEach((s) => observarSecoes.observe(s))
-window.addEventListener('resize', () => marcarAtivo(secaoAtiva))
-document.fonts?.ready.then(() => marcarAtivo(secaoAtiva))
+
+// Mouse sobre o menu: a pílula acompanha o item; ao sair, volta para a seção atual
+linksNav.forEach((a) => a.addEventListener('mouseenter', () => moverIndicador(a)))
+nav.addEventListener('mouseleave', () => moverIndicador(linksNav.find((a) => a.hash === linkAtivo)))
 
 // Menu mobile: círculo que se expande a partir do botão
 const menuToggle = header.querySelector('.menu-toggle')
@@ -409,3 +201,234 @@ window.addEventListener('keydown', (e) => {
   }
 })
 window.matchMedia('(min-width: 1200px)').addEventListener('change', (e) => e.matches && alternarMenu(false))
+
+// ---------- Widget de WhatsApp ----------
+// Ao carregar: abre o balão, mostra "digitando..." e depois a mensagem da equipe.
+// Abre sempre que a página é carregada (inclusive ao recarregar).
+const chat = document.querySelector('#whats-chat')
+const digitando = chat.querySelector('.whats-chat__digitando')
+const mensagem = chat.querySelector('.whats-chat__msg')
+const badge = document.querySelector('.whats-fab__badge')
+
+function abrirChat() {
+  chat.hidden = false
+  requestAnimationFrame(() => chat.classList.add('is-open'))
+  digitando.hidden = false
+  mensagem.hidden = true
+  setTimeout(() => {
+    digitando.hidden = true
+    mensagem.hidden = false
+    badge.classList.add('is-visible')
+  }, 2200)
+}
+
+chat.querySelector('.whats-chat__fechar').addEventListener('click', () => {
+  chat.classList.remove('is-open')
+  setTimeout(() => (chat.hidden = true), 300)
+})
+
+setTimeout(abrirChat, 1800)
+
+// ---------- Cards de situações: painel de detalhes ----------
+// [Nota] Textos informativos a validar pelo Silvio (precisão técnica e Provimento 205/2021).
+const DETALHES = {
+  'cond-coluna': {
+    titulo: 'Coluna e ossos',
+    texto:
+      'Problemas como hérnia de disco ou artrose, por si só, não garantem o direito. O que se avalia é se a condição é de longo prazo e se gera limitações reais no trabalho e no dia a dia, como dor ao fazer esforço, dificuldade para ficar muito tempo sentado ou em pé.',
+  },
+  'cond-visao': {
+    titulo: 'Visão',
+    texto:
+      'A visão monocular é reconhecida por lei como deficiência visual. Baixa visão e perda parcial da visão também podem ser relevantes. O grau da deficiência é definido em avaliação médica e social do INSS.',
+  },
+  'cond-audicao': {
+    titulo: 'Audição',
+    texto:
+      'A perda auditiva de longo prazo pode ser considerada quando cria barreiras no trabalho e na comunicação do dia a dia. O grau da deficiência é definido em avaliação médica e social do INSS.',
+  },
+  'cond-mobilidade': {
+    titulo: 'Mobilidade',
+    texto:
+      'Dificuldade para andar, ficar em pé ou fazer força, e o uso de prótese, órtese ou outros aparelhos, podem ser considerados quando a limitação é de longo prazo e afeta o trabalho.',
+  },
+  'cond-acidente': {
+    titulo: 'Sequelas de acidente',
+    texto:
+      'Sequelas que causam limitações de longo prazo podem ser consideradas. É preciso analisar quando o acidente aconteceu, quais limitações ficaram e o seu tempo de contribuição.',
+  },
+  'cond-mental': {
+    titulo: 'Intelectual, mental ou psicossocial',
+    texto:
+      'Condições intelectuais, mentais ou psicossociais de longo prazo também entram na avaliação, que considera as barreiras enfrentadas no trabalho, no aprendizado e nas relações do dia a dia.',
+  },
+}
+
+const painel = document.querySelector('#painel-condicao')
+const painelCard = painel.querySelector('.painel-condicao__card')
+const painelFoto = painel.querySelector('.painel-condicao__foto')
+const painelWhats = painel.querySelector('[data-whatsapp="painel-condicao"]')
+const cardsCondicao = [...document.querySelectorAll('[data-condicao]')]
+let condicaoAberta = null
+
+function fecharPainel() {
+  painel.classList.remove('is-open')
+  cardsCondicao.forEach((c) => {
+    c.classList.remove('is-selected', 'is-active')
+    c.setAttribute('aria-expanded', 'false')
+  })
+  condicaoAberta = null
+}
+
+function abrirPainel(card) {
+  const id = card.dataset.condicao
+  if (condicaoAberta === id) return fecharPainel()
+  const info = DETALHES[id]
+  const jaAberto = painel.classList.contains('is-open')
+
+  cardsCondicao.forEach((c) => {
+    const escolhido = c === card
+    c.classList.toggle('is-selected', escolhido)
+    c.classList.toggle('is-active', escolhido)
+    c.setAttribute('aria-expanded', String(escolhido))
+  })
+
+  painel.querySelector('.painel-condicao__titulo').textContent = info.titulo
+  painel.querySelector('.painel-condicao__texto').textContent = info.texto
+  painelFoto.src = card.querySelector('.card-photo').src
+  const condicao = CONDICOES[id]
+  painelWhats.href = linkWhatsApp(
+    `Olá, Silvio! Vim pelo site. Convivo com ${condicao} e gostaria de saber se posso ter direito à aposentadoria da pessoa com deficiência.`
+  )
+
+  if (jaAberto) {
+    painelCard.classList.remove('trocando')
+    void painelCard.offsetWidth
+    painelCard.classList.add('trocando')
+  }
+  painel.classList.add('is-open')
+  condicaoAberta = id
+  track('select_content', { content_type: 'condicao', item_id: id })
+
+  // Depois que o painel abre, rola suavemente até ele
+  setTimeout(() => painel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), jaAberto ? 50 : 350)
+}
+
+cardsCondicao.forEach((card) =>
+  card.addEventListener('click', (e) => {
+    e.preventDefault()
+    abrirPainel(card)
+  })
+)
+painel.querySelector('.painel-condicao__fechar').addEventListener('click', () => {
+  const card = cardsCondicao.find((c) => c.dataset.condicao === condicaoAberta)
+  fecharPainel()
+  card?.focus()
+})
+
+// ---------- Carrossel parallax de situações ----------
+const carrossel = document.querySelector('.carrossel')
+const itensCarrossel = [...carrossel.children]
+const setas = [...document.querySelectorAll('[data-carrossel]')]
+let quadroCarrossel = 0
+function atualizarCarrossel() {
+  quadroCarrossel = 0
+  const caixa = carrossel.getBoundingClientRect()
+  const centro = caixa.left + caixa.width / 2
+  itensCarrossel.forEach((li) => {
+    const r = li.getBoundingClientRect()
+    const p = Math.max(-1.5, Math.min(1.5, (r.left + r.width / 2 - centro) / caixa.width))
+    li.firstElementChild.style.setProperty('--px', p.toFixed(3))
+  })
+  const fim = carrossel.scrollWidth - carrossel.clientWidth
+  setas[0].disabled = carrossel.scrollLeft <= 4
+  setas[1].disabled = carrossel.scrollLeft >= fim - 4
+}
+const agendarCarrossel = () => (quadroCarrossel ||= requestAnimationFrame(atualizarCarrossel))
+carrossel.addEventListener('scroll', agendarCarrossel, { passive: true })
+window.addEventListener('resize', agendarCarrossel)
+atualizarCarrossel()
+setas.forEach((s) =>
+  s.addEventListener('click', () =>
+    carrossel.scrollBy({ left: (itensCarrossel[0].offsetWidth + 16) * Number(s.dataset.carrossel), behavior: 'smooth' })
+  )
+)
+// Arrastar com o mouse (no toque o navegador já desliza)
+let arraste = null
+carrossel.addEventListener('pointerdown', (e) => {
+  if (e.pointerType !== 'mouse') return
+  arraste = { x: e.clientX, scroll: carrossel.scrollLeft, moveu: false }
+})
+window.addEventListener('pointermove', (e) => {
+  if (!arraste) return
+  const dx = e.clientX - arraste.x
+  if (Math.abs(dx) > 5) { arraste.moveu = true; carrossel.classList.add('arrastando') }
+  carrossel.scrollLeft = arraste.scroll - dx
+})
+window.addEventListener('pointerup', () => {
+  if (!arraste) return
+  const moveu = arraste.moveu
+  arraste = null
+  carrossel.classList.remove('arrastando')
+  // impede que o fim de um arraste conte como clique no card
+  if (moveu) carrossel.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault() }, { capture: true, once: true })
+})
+
+// ---------- Vídeo de fundo ----------
+// Pausa fora da tela (economiza bateria/dados) e respeita "reduzir movimento"
+const videoFundo = document.querySelector('.video-fundo')
+if (videoFundo) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    videoFundo.removeAttribute('autoplay')
+    videoFundo.pause()
+  } else {
+    new IntersectionObserver(([e]) => (e.isIntersecting ? videoFundo.play().catch(() => {}) : videoFundo.pause())).observe(videoFundo)
+  }
+}
+
+// ---------- Regras: dispara o fluxo animado quando a seção aparece ----------
+const fluxo = document.querySelector('.fluxo')
+if (fluxo) {
+  const obsFluxo = new IntersectionObserver(
+    ([e]) => {
+      if (!e.isIntersecting) return
+      fluxo.classList.add('fluxo-ativo')
+      obsFluxo.disconnect()
+    },
+    { threshold: 0.25 }
+  )
+  obsFluxo.observe(fluxo)
+}
+
+// ---------- Passo a passo: preenche a linha do tempo quando a seção aparece ----------
+const passos = document.querySelector('.passos')
+if (passos) {
+  const obsPassos = new IntersectionObserver(
+    ([e]) => {
+      if (!e.isIntersecting) return
+      passos.classList.add('passos-ativo')
+      obsPassos.disconnect()
+    },
+    { threshold: 0.35 }
+  )
+  obsPassos.observe(passos)
+}
+
+// ---------- Proteção das imagens ----------
+// Bloqueia o menu do botão direito e o "arrastar para salvar" das imagens.
+// Obs.: dificulta a cópia casual, mas não impede totalmente (capturas de tela e ferramentas do navegador continuam funcionando).
+document.addEventListener('contextmenu', (e) => e.preventDefault())
+document.addEventListener('dragstart', (e) => {
+  if (e.target.closest('img, video')) e.preventDefault()
+})
+
+// ---------- Seta da seção de vídeo: desenha quando aparece ----------
+const setaFluxo = document.querySelector('.seta-fluxo')
+if (setaFluxo) {
+  const obsSeta = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return
+    setaFluxo.classList.add('is-visible')
+    obsSeta.disconnect()
+  }, { threshold: 0.6 })
+  obsSeta.observe(setaFluxo)
+}

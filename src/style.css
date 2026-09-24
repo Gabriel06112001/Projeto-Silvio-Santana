@@ -29,7 +29,7 @@
   }
 
   body {
-    @apply bg-white font-sans text-lg text-graphite antialiased;
+    @apply bg-white font-sans text-[0.95rem] text-graphite antialiased;
   }
 
   h1,
@@ -142,46 +142,25 @@
   }
 
   .section-title {
-    @apply font-serif text-[2rem] leading-tight font-medium text-ink md:text-5xl md:leading-[1.15];
+    @apply font-serif text-[1.5rem] leading-tight font-medium text-ink md:text-[1.9rem] md:leading-[1.2];
   }
   .on-dark .section-title {
     @apply text-ivory;
   }
 
-  /* Respostas rápidas da pergunta 1, no hero */
-  .quiz-chip {
-    @apply inline-flex cursor-pointer items-center gap-2 rounded-full border border-ivory/25 bg-white/5 px-5 py-3 font-medium text-ivory transition duration-300 hover:-translate-y-0.5 hover:border-bronze hover:bg-bronze hover:text-ink;
-  }
-  .quiz-chip::after {
-    content: "→";
-    @apply -ml-2 w-0 overflow-hidden opacity-0 transition-all duration-300;
-  }
-  .quiz-chip:hover::after,
-  .quiz-chip:focus-visible::after {
-    @apply ml-0 w-4 opacity-100;
-  }
-
-  /* Opções do quiz (radio/checkbox estilizados como cartões) */
-  .quiz-option {
-    @apply flex cursor-pointer items-center gap-4 rounded-2xl border border-sand bg-white px-5 py-4 transition hover:border-bronze has-checked:border-bronze has-checked:bg-ivory has-checked:ring-1 has-checked:ring-bronze;
-  }
-  .quiz-option input {
-    @apply h-5 w-5 shrink-0 accent-bronze-dark;
-  }
-
-  .quiz-input {
-    @apply w-full rounded-xl border border-sand bg-white px-4 py-3 transition focus:border-bronze focus:ring-2 focus:ring-bronze/30 focus:outline-none;
-  }
-
   /* Foto que se funde ao fundo grafite */
   .photo-blend {
+    /* Máscara oval: rosto e tronco nítidos, todas as bordas (inclusive os cantos de cima) se dissolvem no fundo */
+    /* Três camadas combinadas: oval + topo curto (acima da cabeça) + laterais largas */
     -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 12%, #000 72%, transparent 100%),
-      linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
-    -webkit-mask-composite: source-in;
+      radial-gradient(ellipse 62% 80% at 50% 46%, #000 52%, transparent 94%),
+      linear-gradient(to bottom, transparent 0%, #000 9%, #000 66%, rgb(0 0 0 / 0.75) 78%, rgb(0 0 0 / 0.35) 90%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%);
+    -webkit-mask-composite: source-in, source-in;
     mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 12%, #000 72%, transparent 100%),
-      linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+      radial-gradient(ellipse 62% 80% at 50% 46%, #000 52%, transparent 94%),
+      linear-gradient(to bottom, transparent 0%, #000 9%, #000 66%, rgb(0 0 0 / 0.75) 78%, rgb(0 0 0 / 0.35) 90%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%);
     mask-composite: intersect;
   }
 
@@ -342,4 +321,1179 @@ details[open]::details-content {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ================= WhatsApp ================= */
+/* Botões "Quero analisar meu caso" que abrem o WhatsApp: ícone do WhatsApp no lugar da seta */
+.btn-cta[data-whatsapp]::after {
+  --arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d2b07a'%3E%3Cpath d='M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.81 11.81 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41'/%3E%3C/svg%3E");
+  --arrow-size: 22px;
+}
+.btn-sm[data-whatsapp]::after {
+  --arrow-size: 17px;
+}
+
+/* Botão principal verde, com anel pulsando para chamar atenção */
+.btn-whatsapp {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 26rem;
+  padding: 1.1rem 2rem;
+  border-radius: 9999px;
+  background: #1f9d55;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  transition:
+    background-color 0.3s,
+    translate 0.3s var(--ease-out);
+}
+.btn-whatsapp:hover {
+  background: #188a49;
+  translate: 0 -2px;
+}
+.btn-whatsapp::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid #1f9d55;
+  animation: pulso-whatsapp 2.2s var(--ease-out) infinite;
+  pointer-events: none;
+}
+@keyframes pulso-whatsapp {
+  0% { opacity: 0.7; scale: 1; }
+  80%, 100% { opacity: 0; scale: 1.12; }
+}
+
+/* Marcador de check bronze da lista "O que você pode contar" */
+.check-bronze {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.15rem;
+  border-radius: 9999px;
+  background: var(--color-bronze)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181c1b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E")
+    center / 12px no-repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-whatsapp::before {
+    animation: none;
+  }
+}
+
+/* ================= Selo do tema no hero ================= */
+.selo-tema {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid rgb(210 176 122 / 0.55);
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgb(184 147 90 / 0.22), rgb(184 147 90 / 0.08));
+  color: var(--color-bronze-light);
+  font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+/* Reflexo de luz que atravessa o selo de tempos em tempos */
+.selo-tema::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgb(255 236 200 / 0.28) 50%, transparent 65%);
+  translate: -110% 0;
+  animation: selo-brilho 5s var(--ease-out) 1.5s infinite;
+  pointer-events: none;
+}
+@keyframes selo-brilho {
+  0% { translate: -110% 0; }
+  35%, 100% { translate: 110% 0; }
+}
+/* Ponto com halo pulsante */
+.selo-tema__ponto {
+  position: relative;
+  flex-shrink: 0;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 9999px;
+  background: var(--color-bronze-light);
+}
+.selo-tema__ponto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-bronze-light);
+  animation: selo-pulso 2s var(--ease-out) infinite;
+}
+@keyframes selo-pulso {
+  0% { opacity: 0.7; scale: 1; }
+  100% { opacity: 0; scale: 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .selo-tema::after,
+  .selo-tema__ponto::after {
+    animation: none;
+  }
+}
+
+/* ================= Credenciais do hero: barra compacta de vidro ================= */
+.hero-rodape {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
+  max-width: 34rem;
+  padding: 0.3rem;
+  border: 1px solid rgb(247 244 238 / 0.09);
+  border-radius: 1.1rem;
+  background: rgb(24 28 27 / 0.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+}
+.hero-rodape li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.85rem;
+  transition: background-color 0.3s;
+}
+.hero-rodape li:hover {
+  background: rgb(255 255 255 / 0.05);
+}
+.hero-rodape svg {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0.38rem;
+  border-radius: 9999px;
+  background: rgb(184 147 90 / 0.16);
+  color: var(--color-bronze-light);
+}
+.hero-rodape span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 0.68rem;
+  line-height: 1.25;
+  color: rgb(247 244 238 / 0.6);
+}
+.hero-rodape strong {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-ivory);
+}
+
+/* ================= Widget de WhatsApp (botão flutuante + balão de chat) ================= */
+.whats-widget {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+/* Botão redondo verde, entra com um "pulo" e tem halo pulsante */
+.whats-fab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 9999px;
+  background: #1f9d55;
+  color: #fff;
+  animation: fab-entrada 0.7s var(--ease-out) 0.8s both;
+  transition: background-color 0.3s, scale 0.3s var(--ease-out);
+}
+.whats-fab:hover {
+  background: #188a49;
+  scale: 1.07;
+}
+.whats-fab svg {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+.whats-fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #1f9d55;
+  z-index: -1;
+  animation: pulso-whatsapp 2.2s var(--ease-out) 1.5s infinite;
+}
+@keyframes fab-entrada {
+  from { opacity: 0; scale: 0.4; translate: 0 20px; }
+}
+.whats-fab__badge {
+  position: absolute;
+  top: -0.2rem;
+  right: -0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 2px solid #fff;
+  border-radius: 9999px;
+  background: #e5484d;
+  font-size: 0.7rem;
+  font-weight: 700;
+  scale: 0;
+  transition: scale 0.4s var(--ease-out);
+}
+.whats-fab__badge.is-visible {
+  scale: 1;
+}
+
+/* Balão de chat */
+.whats-chat {
+  width: min(20rem, calc(100vw - 2rem));
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 18px 50px -12px rgb(0 0 0 / 0.45);
+  transform-origin: bottom right;
+  opacity: 0;
+  scale: 0.85;
+  translate: 0 12px;
+  transition:
+    opacity 0.35s var(--ease-out),
+    scale 0.45s var(--ease-out),
+    translate 0.45s var(--ease-out);
+}
+.whats-chat.is-open {
+  opacity: 1;
+  scale: 1;
+  translate: 0 0;
+}
+.whats-chat__topo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--color-graphite);
+  color: var(--color-ivory);
+}
+.whats-chat__topo img {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+.whats-chat__topo span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.whats-chat__topo strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.whats-chat__topo small {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: rgb(247 244 238 / 0.7);
+}
+.whats-chat__topo small i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background: #3ddc84;
+}
+.whats-chat__fechar {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.08)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f7f4ee' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E")
+    center / 12px no-repeat;
+  cursor: pointer;
+}
+.whats-chat__fechar:hover {
+  background-color: rgb(255 255 255 / 0.18);
+}
+.whats-chat__corpo {
+  min-height: 5.5rem;
+  padding: 1rem;
+  background: #efe9df;
+}
+.whats-chat__msg,
+.whats-chat__digitando {
+  position: relative;
+  width: fit-content;
+  max-width: 92%;
+  border-radius: 0 0.9rem 0.9rem 0.9rem;
+  background: #fff;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 0.08);
+}
+.whats-chat__msg {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--color-graphite);
+  animation: msg-entrada 0.4s var(--ease-out);
+}
+@keyframes msg-entrada {
+  from { opacity: 0; translate: 0 6px; }
+}
+/* Três pontinhos "digitando..." */
+.whats-chat__digitando {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.8rem 0.95rem;
+}
+.whats-chat__digitando[hidden] {
+  display: none;
+}
+.whats-chat__digitando span {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background: #9aa19e;
+  animation: digitando 1.2s ease-in-out infinite;
+}
+.whats-chat__digitando span:nth-child(2) { animation-delay: 0.15s; }
+.whats-chat__digitando span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes digitando {
+  0%, 60%, 100% { translate: 0 0; opacity: 0.5; }
+  30% { translate: 0 -5px; opacity: 1; }
+}
+.whats-chat__botao {
+  display: block;
+  margin: 0.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: 9999px;
+  background: #1f9d55;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+.whats-chat__botao:hover {
+  background: #188a49;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whats-fab,
+  .whats-fab::before,
+  .whats-chat__digitando span,
+  .whats-chat__msg {
+    animation: none;
+  }
+}
+
+/* ================= Cards de situações: destaques, seleção e painel ================= */
+/* Marca-texto bronze nas palavras-chave (chama o olho e convida ao clique) */
+.destaque {
+  padding: 0 0.15em;
+  border-radius: 0.2em;
+  background: linear-gradient(to top, rgb(210 176 122 / 0.45) 42%, transparent 42%);
+  color: var(--color-ink);
+  font-weight: 600;
+  transition: background 0.4s, color 0.4s;
+}
+.card-hover:hover .destaque,
+.card-hover.is-active .destaque {
+  background: linear-gradient(to top, rgb(184 147 90 / 0.4) 42%, transparent 42%);
+  color: var(--color-bronze-light);
+}
+
+/* Chamada no pé do card */
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-bronze-dark);
+  transition: color 0.4s, gap 0.3s var(--ease-out);
+}
+.card-cta::after {
+  content: "→";
+  transition: translate 0.3s var(--ease-out);
+}
+.card-hover:hover .card-cta,
+.card-hover.is-active .card-cta {
+  color: var(--color-bronze-light);
+}
+.card-hover:hover .card-cta::after {
+  translate: 4px 0;
+}
+
+/* Card escolhido: fica escuro com a foto e um anel bronze */
+.card-hover.is-selected {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 3px;
+}
+.card-hover.is-selected .card-cta {
+  color: var(--color-bronze-light);
+}
+.card-hover.is-selected .card-cta::after {
+  content: "↓";
+}
+
+
+/* Painel de detalhes: altura anima de 0 até o conteúdo (grid 0fr -> 1fr) */
+.painel-condicao {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.6s var(--ease-out),
+    opacity 0.5s var(--ease-out),
+    margin 0.6s var(--ease-out);
+}
+.painel-condicao.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 1.5rem;
+}
+.painel-condicao__mola {
+  min-height: 0;
+  overflow: hidden;
+}
+.painel-condicao__card {
+  display: grid;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background: var(--color-graphite);
+  color: var(--color-ivory);
+  translate: 0 24px;
+  transition: translate 0.6s var(--ease-out);
+}
+.painel-condicao.is-open .painel-condicao__card {
+  translate: 0 0;
+}
+@media (min-width: 768px) {
+  .painel-condicao__card {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+.painel-condicao__foto {
+  width: 100%;
+  height: 100%;
+  max-height: 16rem;
+  object-fit: cover;
+  filter: saturate(0.75) sepia(0.1);
+}
+@media (min-width: 768px) {
+  .painel-condicao__foto {
+    max-height: none;
+  }
+}
+.painel-condicao__conteudo {
+  padding: 1.75rem;
+}
+@media (min-width: 768px) {
+  .painel-condicao__conteudo {
+    padding: 2.5rem;
+  }
+}
+.painel-condicao__conteudo .eyebrow {
+  color: var(--color-bronze-light);
+}
+.painel-condicao__titulo {
+  margin-top: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.painel-condicao__texto {
+  margin-top: 0.9rem;
+  line-height: 1.65;
+  color: rgb(247 244 238 / 0.8);
+}
+.painel-condicao__subtitulo {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-bronze-light);
+}
+.painel-condicao__lista {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: rgb(247 244 238 / 0.85);
+}
+@media (min-width: 640px) {
+  .painel-condicao__lista {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.painel-condicao__lista li {
+  display: flex;
+  gap: 0.6rem;
+}
+.painel-condicao__lista li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: 0.5rem;
+  rotate: 45deg;
+  background: var(--color-bronze);
+}
+.painel-condicao__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+.painel-condicao__fechar {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgb(247 244 238 / 0.6);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.painel-condicao__fechar:hover {
+  color: var(--color-ivory);
+}
+/* Troca de condição com o painel já aberto: conteúdo entra de novo suavemente */
+.painel-condicao__card.trocando .painel-condicao__conteudo,
+.painel-condicao__card.trocando .painel-condicao__foto {
+  animation: fade-up 0.5s var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+}
+
+/* ================= Carrossel parallax de situações ================= */
+.carrossel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  margin-inline: -1.25rem;
+  padding: 0.5rem 1.25rem 1rem;
+  scrollbar-width: none;
+  cursor: grab;
+}
+.carrossel::-webkit-scrollbar { display: none; }
+.carrossel.arrastando { cursor: grabbing; scroll-snap-type: none; }
+@media (min-width: 768px) {
+  .carrossel { margin-inline: -2rem; padding-inline: 2rem; scroll-padding-inline: 2rem; }
+}
+.carrossel > li {
+  flex: 0 0 min(19rem, 80vw);
+  scroll-snap-align: start;
+}
+/* No carrossel a foto fica sempre visível, com véu escuro, e o texto claro */
+.carrossel .card-hover {
+  min-height: 22rem;
+  justify-content: flex-end;
+}
+.carrossel .card-photo {
+  opacity: 1;
+  scale: 1.25;
+  translate: calc(var(--px, 0) * -40px) 0; /* parallax: a foto anda mais devagar que o card */
+  transition: translate 0.15s linear, scale 0.6s var(--ease-out);
+}
+.carrossel .card-hover:hover .card-photo { scale: 1.32; }
+.carrossel .card-hover::after {
+  opacity: 1;
+  background: linear-gradient(to bottom, rgb(24 28 27 / 0.15) 0%, rgb(24 28 27 / 0.65) 45%, rgb(24 28 27 / 0.95) 100%);
+}
+.carrossel .card-hover > span,
+.carrossel .card-hover > svg {
+  translate: calc(var(--px, 0) * 14px) 0; /* texto anda um pouco mais rápido: profundidade */
+  transition: translate 0.15s linear;
+}
+.carrossel .card-hover > span:first-of-type { color: var(--color-ivory); }
+.carrossel .card-hover > span:nth-of-type(2) { color: rgb(247 244 238 / 0.85); }
+.carrossel .card-hover > svg { background: rgb(184 147 90 / 0.9); color: var(--color-ink); margin-bottom: auto; }
+.carrossel .destaque { color: var(--color-bronze-light); background: linear-gradient(to top, rgb(184 147 90 / 0.35) 42%, transparent 42%); }
+.carrossel .card-cta { color: var(--color-bronze-light); }
+.carrossel-seta {
+  width: 2.75rem; height: 2.75rem; border-radius: 9999px;
+  border: 1px solid rgb(36 42 40 / 0.2);
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23242a28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 6l-6 6 6 6'/%3E%3C/svg%3E") center / 18px no-repeat;
+  cursor: pointer; transition: background-color 0.3s, opacity 0.3s;
+}
+.carrossel-seta--prox { rotate: 180deg; }
+.carrossel-seta:hover { background-color: var(--color-sand); }
+.carrossel-seta[disabled] { opacity: 0.35; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .carrossel .card-photo, .carrossel .card-hover > span, .carrossel .card-hover > svg { translate: 0 0; }
+}
+
+/* Carrossel em telas pequenas: cards mais estreitos e baixos, texto menor */
+@media (max-width: 767px) {
+  .carrossel { gap: 0.75rem; }
+  .carrossel > li { flex-basis: 68vw; }
+  .carrossel .card-hover { min-height: 17rem; padding: 1.25rem; border-radius: 1.25rem; }
+  .carrossel .card-hover > svg { width: 1.3rem; height: 1.3rem; padding: 0.6rem; border-radius: 0.8rem; }
+  .carrossel .card-hover > span:first-of-type { margin-top: 1rem; font-size: 1.05rem; }
+  .carrossel .card-hover > span:nth-of-type(2) { margin-top: 0.5rem; font-size: 0.82rem; line-height: 1.5; }
+  .carrossel .card-cta { padding-top: 0.75rem; font-size: 0.78rem; }
+}
+
+/* ================= Vídeo de fundo (seção "Nunca se considerou...") ================= */
+.video-fundo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-veu {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(24 28 27 / 0.92) 0%, rgb(24 28 27 / 0.78) 55%, rgb(24 28 27 / 0.7) 100%),
+    linear-gradient(to bottom, rgb(24 28 27 / 0.4), rgb(24 28 27 / 0.85));
+}
+
+/* ================= Regras: fluxo animado ================= */
+.fluxo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fluxo__inicio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 1.1rem 0.55rem 0.55rem;
+  border-radius: 9999px;
+  background: var(--color-graphite);
+  color: var(--color-ivory);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+}
+.fluxo__icone {
+  display: flex;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.45rem;
+  border-radius: 9999px;
+  background: var(--color-bronze);
+  color: var(--color-ink);
+}
+.fluxo__ramos {
+  display: none;
+  width: 100%;
+  height: 3.25rem;
+  overflow: visible;
+}
+.fluxo__ramos path {
+  fill: none;
+  stroke: var(--color-bronze);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+}
+.fluxo__caminhos {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+@media (min-width: 768px) {
+  .fluxo__ramos {
+    display: block;
+  }
+  .fluxo__caminhos {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 0;
+  }
+}
+.fluxo__card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: #fff;
+}
+.fluxo__card--escuro {
+  background: var(--color-graphite);
+  color: var(--color-ivory);
+}
+.fluxo__rotulo {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze-dark);
+}
+.fluxo__card--escuro .fluxo__rotulo {
+  color: var(--color-bronze-light);
+}
+.fluxo__titulo {
+  margin-top: 0.25rem;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+.fluxo__sub {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-stone);
+}
+.fluxo__card--escuro .fluxo__sub {
+  color: rgb(247 244 238 / 0.7);
+}
+.fluxo__graus {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.fluxo__graus li {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.9rem;
+  background: var(--color-ivory);
+}
+.fluxo__graus span {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-ink);
+}
+.fluxo__graus strong,
+.fluxo__idades strong {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-ink);
+}
+.fluxo__graus em,
+.fluxo__idades em {
+  margin-right: 0.35rem;
+  font-size: 0.72rem;
+  font-style: normal;
+  color: var(--color-stone);
+}
+.fluxo__idades {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.fluxo__idades div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.9rem;
+  background: rgb(255 255 255 / 0.06);
+}
+.fluxo__idades strong {
+  font-size: 2.4rem;
+  color: var(--color-bronze-light);
+}
+.fluxo__idades em {
+  color: rgb(247 244 238 / 0.7);
+}
+.fluxo__nota {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  font-size: 0.8rem;
+  color: var(--color-stone);
+}
+.fluxo__card--escuro .fluxo__nota {
+  color: rgb(247 244 238 / 0.8);
+}
+
+/* Animação em sequência: início -> linhas se desenham -> cards -> itens */
+.js .fluxo__inicio,
+.js .fluxo__card,
+.js .fluxo__graus li,
+.js .fluxo__idades div {
+  opacity: 0;
+  translate: 0 18px;
+  transition:
+    opacity 0.6s var(--ease-out),
+    translate 0.6s var(--ease-out);
+}
+.fluxo-ativo .fluxo__inicio,
+.fluxo-ativo .fluxo__card,
+.fluxo-ativo .fluxo__graus li,
+.fluxo-ativo .fluxo__idades div {
+  opacity: 1;
+  translate: 0 0;
+}
+.fluxo-ativo .fluxo__ramos path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s var(--ease-out) 0.35s;
+}
+.fluxo-ativo .fluxo__card { transition-delay: 1s; }
+.fluxo-ativo .fluxo__card--escuro { transition-delay: 1.15s; }
+.fluxo-ativo .fluxo__graus li:nth-child(1) { transition-delay: 1.35s; }
+.fluxo-ativo .fluxo__graus li:nth-child(2) { transition-delay: 1.5s; }
+.fluxo-ativo .fluxo__graus li:nth-child(3) { transition-delay: 1.65s; }
+.fluxo-ativo .fluxo__idades div:nth-child(1) { transition-delay: 1.5s; }
+.fluxo-ativo .fluxo__idades div:nth-child(2) { transition-delay: 1.65s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .fluxo__inicio,
+  .js .fluxo__card,
+  .js .fluxo__graus li,
+  .js .fluxo__idades div {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .fluxo__ramos path {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Regras em telas pequenas */
+@media (max-width: 767px) {
+  .fluxo__inicio { font-size: 0.8rem; }
+  .fluxo__card { padding: 1.15rem; border-radius: 1.2rem; }
+  .fluxo__titulo { font-size: 1.15rem; }
+  .fluxo__sub { font-size: 0.8rem; }
+  .fluxo__graus li { padding: 0.55rem 0.75rem; gap: 0.35rem; }
+  .fluxo__graus span { font-size: 0.9rem; }
+  .fluxo__graus strong { font-size: 1.25rem; }
+  .fluxo__idades strong { font-size: 2rem; }
+  .fluxo__idades div { padding: 0.7rem 0.8rem; }
+}
+/* Celulares bem estreitos: nome do grau em cima, números embaixo */
+@media (max-width: 380px) {
+  .fluxo__graus li { grid-template-columns: auto auto auto auto; justify-content: start; }
+  .fluxo__graus span { grid-column: 1 / -1; }
+}
+
+/* ================= Passo a passo: linha do tempo com preenchimento ================= */
+.passos {
+  --duracao: 2.4s;
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+}
+/* Trilho (cinza) e preenchimento (bronze) — vertical no celular */
+.passos::before,
+.passos::after {
+  content: "";
+  position: absolute;
+  left: 1.2rem;
+  top: 1.2rem;
+  bottom: 3rem; /* termina no círculo da última etapa */
+  width: 2px;
+  translate: -50% 0;
+  border-radius: 2px;
+  background: var(--color-sand);
+}
+.passos::after {
+  background: linear-gradient(to bottom, var(--color-bronze-light), var(--color-bronze));
+  transform-origin: top;
+  scale: 1 0;
+}
+.passos-ativo::after {
+  scale: 1 1;
+  transition: scale var(--duracao) cubic-bezier(0.45, 0, 0.2, 1);
+}
+.passo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+.passo__no {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 2px solid var(--color-sand);
+  border-radius: 9999px;
+  background: var(--color-ivory);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-stone);
+  transition:
+    border-color 0.4s,
+    color 0.4s,
+    background-color 0.4s;
+}
+/* Círculo que "enche" de bronze a partir do centro */
+.passo__no::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: var(--color-bronze);
+  scale: 0;
+  transition: scale 0.5s var(--ease-out);
+}
+.passo__no > span {
+  position: relative;
+}
+.passo__titulo {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+.passo__texto {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-stone);
+}
+.js .passo > div {
+  opacity: 0.35;
+  translate: 0 8px;
+  transition:
+    opacity 0.6s var(--ease-out),
+    translate 0.6s var(--ease-out);
+}
+/* Cada etapa acende quando a linha chega nela */
+.passos-ativo .passo__no,
+.passos-ativo .passo__no::before,
+.passos-ativo .passo > div {
+  transition-delay: calc(var(--i) * var(--duracao) / 3.2);
+}
+.passos-ativo .passo__no {
+  border-color: var(--color-bronze);
+  color: var(--color-ink);
+}
+.passos-ativo .passo__no::before {
+  scale: 1;
+}
+.passos-ativo .passo > div {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Computador: linha horizontal, etapas lado a lado */
+@media (min-width: 768px) {
+  .passos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .passos::before,
+  .passos::after {
+    top: 1.35rem;
+    bottom: auto;
+    left: 12.5%;
+    right: 12.5%;
+    width: auto;
+    height: 2px;
+    translate: 0 -50%;
+  }
+  .passos::after {
+    transform-origin: left;
+    scale: 0 1;
+  }
+  .passos-ativo::after {
+    scale: 1 1;
+  }
+  .passo {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    text-align: center;
+  }
+  .passo__no {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .passos::after,
+  .passo__no,
+  .passo__no::before,
+  .js .passo > div {
+    transition: none !important;
+  }
+}
+
+/* FAQ em duas colunas no computador (menos altura) */
+@media (min-width: 1024px) {
+  .faq-colunas { columns: 2; column-gap: 0.75rem; }
+}
+
+/* ================= Rodapé ================= */
+.rodape {
+  padding-bottom: 5rem; /* espaço para o botão flutuante do WhatsApp no celular */
+  background: var(--color-ink);
+  font-size: 0.9rem;
+  color: rgb(247 244 238 / 0.6);
+}
+@media (min-width: 768px) {
+  .rodape { padding-bottom: 0.5rem; }
+}
+.rodape__titulo {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze-light);
+}
+.rodape__lista {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.rodape__lista a,
+.rodape__lista span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.rodape__lista a {
+  transition: color 0.3s, translate 0.3s var(--ease-out);
+}
+.rodape__lista a:hover {
+  color: var(--color-ivory);
+  translate: 3px 0;
+}
+.rodape__lista svg {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-bronze-light);
+}
+
+/* Proteção das imagens: sem arrastar, sem seleção e sem o menu "salvar imagem" do toque longo no celular */
+img,
+video {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* ================= Barra de rolagem oculta (a rolagem continua funcionando) ================= */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Edge antigo */
+}
+::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
+/* ================= Seção de vídeo ================= */
+.video-moldura {
+  /* Proporção do mockup (389x800); a tela ocupa a área transparente medida no PNG */
+  position: relative;
+  aspect-ratio: 389 / 800;
+  width: min(100%, 20rem);
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .video-moldura { width: 19.5rem; }
+}
+.video-moldura video {
+  position: absolute;
+  top: 1.75%;
+  bottom: 1.63%;
+  left: 4.37%;
+  right: 4.11%;
+  width: 91.52%;
+  height: 96.62%;
+  object-fit: cover;
+  border-radius: 11% / 5.2%;
+  background: var(--color-ink);
+}
+.video-moldura__aparelho {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* os controles do vídeo continuam clicáveis por baixo da moldura */
+  filter: drop-shadow(0 24px 40px rgb(24 28 27 / 0.28));
+}
+.video-espera {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  background: radial-gradient(ellipse 70% 70% at 50% 40%, rgb(184 147 90 / 0.18), transparent 70%);
+  color: rgb(247 244 238 / 0.7);
+  font-size: 0.9rem;
+}
+.video-espera__play {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 9999px;
+  background: var(--color-bronze)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23181c1b'%3E%3Cpath d='M8 5.5v13l11-6.5z'/%3E%3C/svg%3E")
+    55% center / 1.8rem no-repeat;
+}
+
+/* Seta curva da seção de vídeo (só a partir de tablets, onde o vídeo fica ao lado do texto) */
+.seta-fluxo {
+  display: none;
+  width: min(100%, 24rem);
+  height: auto;
+  margin-top: 1.5rem;
+  margin-left: clamp(0rem, 5vw, 4.5rem); /* um pouco deslocada para a direita, sem encostar no vídeo */
+  overflow: visible;
+}
+@media (min-width: 768px) {
+  .seta-fluxo { display: block; }
+}
+.seta-fluxo path {
+  stroke: var(--color-bronze);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.seta-fluxo__linha {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+}
+.seta-fluxo__ponta {
+  opacity: 0;
+}
+.seta-fluxo.is-visible .seta-fluxo__linha {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.3s var(--ease-out) 0.2s;
+}
+.seta-fluxo.is-visible .seta-fluxo__ponta {
+  opacity: 1;
+  transition: opacity 0.4s 1.3s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .seta-fluxo__linha { stroke-dashoffset: 0; }
+  .seta-fluxo__ponta { opacity: 1; }
 }

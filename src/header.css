@@ -192,6 +192,13 @@
 .site-nav a.is-active {
   color: var(--color-ink);
 }
+/* Enquanto o mouse está sobre outro item, o texto do item ativo volta a claro (a pílula está no item do mouse) */
+.site-nav:hover a.is-active:not(:hover) {
+  color: rgb(247 244 238 / 0.72);
+}
+.site-nav:hover a:hover {
+  color: var(--color-ink);
+}
 .site-nav__indicator {
   position: absolute;
   top: 0.25rem;

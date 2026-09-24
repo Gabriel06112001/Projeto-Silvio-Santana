@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aposentadoria PcD | Dr. Silvio Santana · Previdenciarista</title>
+    <title>Aposentadoria PcD | Silvio Santana · Advogado Previdenciário</title>
     <meta
       name="description"
       content="Tem problema na coluna, visão, audição ou sequela de acidente? Sua condição pode fazer diferença na aposentadoria. Faça uma análise do seu caso."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="author" content="Dr. Silvio Santana" />
+    <meta name="author" content="Silvio Santana" />
     <meta name="theme-color" content="#242a28" />
     <!-- %VITE_SITE_URL% vem do arquivo .env (domínio definitivo do site) -->
     <link rel="canonical" href="%VITE_SITE_URL%/" />
@@ -17,9 +17,9 @@
     <!-- Compartilhamento (WhatsApp, Facebook, LinkedIn, X) -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:site_name" content="Dr. Silvio Santana · Advogado Previdenciarista" />
+    <meta property="og:site_name" content="Silvio Santana · Advogado Previdenciário" />
     <meta property="og:url" content="%VITE_SITE_URL%/" />
-    <meta property="og:title" content="Aposentadoria PcD | Dr. Silvio Santana · Previdenciarista" />
+    <meta property="og:title" content="Aposentadoria PcD | Silvio Santana · Advogado Previdenciário" />
     <meta
       property="og:description"
       content="Sua condição pode fazer diferença na aposentadoria, mesmo que você nunca tenha se considerado uma pessoa com deficiência. Faça uma análise do seu caso."
@@ -27,24 +27,20 @@
     <meta property="og:image" content="%VITE_SITE_URL%/images/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Dr. Silvio Santana, advogado previdenciarista — Aposentadoria da Pessoa com Deficiência" />
+    <meta property="og:image:alt" content="Silvio Santana, advogado previdenciário — Aposentadoria da Pessoa com Deficiência" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Foto do hero é o maior elemento da tela (LCP): carrega antes de tudo -->
     <link
       rel="preload"
       as="image"
-      href="/images/silvio-hero-800.webp"
-      imagesrcset="/images/silvio-hero-800.webp 800w, /images/silvio-hero-1200.webp 1200w"
-      imagesizes="(min-width: 1024px) 45vw, (min-width: 768px) 448px, 90vw"
+      href="/images/silvio-cta.webp"
       fetchpriority="high"
     />
 
     <!--
       Dados estruturados (schema.org) para o Google entender quem é o advogado, o serviço e o FAQ.
-      [Nota] Quando o Dr. Silvio enviar os dados, acrescentar em LegalService:
-      "telephone", "email", "address" (PostalAddress) e "areaServed"; e em Person: "identifier" com a OAB.
-      O FAQ abaixo deve ter o MESMO texto do FAQ visível na página. A pergunta sobre custo entra quando for definida.
+      O FAQ abaixo deve ter o MESMO texto do FAQ visível na página.
     -->
     <script type="application/ld+json">
       {
@@ -53,7 +49,7 @@
           {
             "@type": "LegalService",
             "@id": "%VITE_SITE_URL%/#escritorio",
-            "name": "Dr. Silvio Santana — Advogado Previdenciarista",
+            "name": "Silvio Santana — Advogado Previdenciário",
             "url": "%VITE_SITE_URL%/",
             "image": "%VITE_SITE_URL%/images/og-image.jpg",
             "logo": "%VITE_SITE_URL%/images/logo.webp",
@@ -65,14 +61,20 @@
               "Direito Previdenciário",
               "INSS"
             ],
+            "email": "silvio.santana@adv.oabsp.org.br",
+            "telephone": "+55-11-92722-2548",
+            "sameAs": ["https://www.instagram.com/silviosantana.adv/"],
+            "areaServed": { "@type": "Country", "name": "Brasil" },
+            "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
             "employee": { "@id": "%VITE_SITE_URL%/#silvio" }
           },
           {
             "@type": "Person",
             "@id": "%VITE_SITE_URL%/#silvio",
-            "name": "Dr. Silvio Santana",
-            "honorificPrefix": "Dr.",
-            "jobTitle": "Advogado Previdenciarista",
+            "name": "Silvio Santana",
+            "jobTitle": "Advogado Previdenciário",
+            "identifier": "OAB/SP 493.305",
+            "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidade São Judas Tadeu" },
             "image": "%VITE_SITE_URL%/images/silvio-sobre.webp",
             "worksFor": { "@id": "%VITE_SITE_URL%/#escritorio" }
           },
@@ -80,7 +82,7 @@
             "@type": "WebPage",
             "@id": "%VITE_SITE_URL%/#pagina",
             "url": "%VITE_SITE_URL%/",
-            "name": "Aposentadoria PcD | Dr. Silvio Santana · Previdenciarista",
+            "name": "Aposentadoria PcD | Silvio Santana · Advogado Previdenciário",
             "inLanguage": "pt-BR",
             "about": { "@id": "%VITE_SITE_URL%/#escritorio" },
             "primaryImageOfPage": "%VITE_SITE_URL%/images/og-image.jpg"
@@ -123,6 +125,11 @@
                 "@type": "Question",
                 "name": "Quanto tempo preciso ter trabalhado?",
                 "acceptedAnswer": { "@type": "Answer", "text": "Depende do grau da deficiência e do caminho escolhido: por tempo de contribuição (de 20 a 33 anos) ou por idade (60 anos para homens e 55 para mulheres, com 15 anos de contribuição). Veja a tabela acima." }
+              },
+              {
+                "@type": "Question",
+                "name": "Quanto custa a análise inicial?",
+                "acceptedAnswer": { "@type": "Answer", "text": "A análise inicial é gratuita. Você conta a sua história pelo WhatsApp e a nossa equipe avalia o seu caso sem nenhum custo." }
               }
             ]
           }
@@ -140,6 +147,7 @@
     />
     <!-- Ativa as animações só quando há JavaScript (evita conteúdo invisível sem JS) -->
     <script>document.documentElement.classList.add('js')</script>
+    <link rel="stylesheet" href="/src/style.css" />
     <script type="module" src="/src/main.js"></script>
   </head>
   <body>
@@ -154,7 +162,7 @@
     -->
     <header id="site-header" class="site-header">
       <div class="site-header__bar">
-        <a href="#inicio" class="brand" aria-label="Dr. Silvio Santana — voltar ao início">
+        <a href="#inicio" class="brand" aria-label="Silvio Santana — voltar ao início">
           <span class="brand__mark">
             <svg class="brand__ring" viewBox="0 0 52 52" aria-hidden="true">
               <circle class="brand__ring-track" cx="26" cy="26" r="24.5" />
@@ -163,8 +171,8 @@
             <img src="/images/logo.webp" alt="" width="44" height="44" />
           </span>
           <span class="brand__text">
-            <span class="brand__name">Dr. Silvio Santana</span>
-            <span class="brand__role"><span>Advogado Previdenciarista</span></span>
+            <span class="brand__name">Silvio Santana</span>
+            <span class="brand__role"><span>Advogado Previdenciário</span></span>
           </span>
         </a>
 
@@ -177,7 +185,7 @@
           <a href="#duvidas">Dúvidas</a>
         </nav>
 
-        <a href="#analise" class="btn-cta btn-sm header-cta">Analisar meu caso</a>
+        <a href="https://wa.me/" data-whatsapp="cta-1" target="_blank" rel="noopener" class="btn-cta btn-sm header-cta">Analisar meu caso</a>
 
         <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu">
           <span></span><span></span>
@@ -195,152 +203,171 @@
         <a href="#duvidas" style="--i: 4"><span>05</span>Dúvidas</a>
       </nav>
       <div class="menu-mobile__footer" style="--i: 5">
-        <a href="#analise" class="btn-cta w-full justify-between">Analisar meu caso</a>
-        <p>Dr. Silvio Santana · Advogado Previdenciarista · [OAB/UF nº]</p>
+        <a href="https://wa.me/" data-whatsapp="cta-2" target="_blank" rel="noopener" class="btn-cta w-full justify-between">Analisar meu caso</a>
+        <p>Silvio Santana · Advogado Previdenciário · OAB/SP 493.305</p>
       </div>
     </div>
 
     <main id="conteudo">
       <!-- ============ Seção 1 — Hero ============ -->
       <section id="inicio" class="bg-studio on-dark overflow-hidden">
-        <div class="mx-auto grid max-w-7xl items-end gap-6 px-5 pt-32 md:px-8 md:pt-40 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
-          <div class="pb-6 lg:pb-24">
-            <p class="inline-flex items-center gap-2.5 rounded-full border border-bronze/40 bg-white/5 px-4 py-2 text-sm font-semibold tracking-[0.12em] text-bronze-light uppercase backdrop-blur">
-              <span class="h-2 w-2 rounded-full bg-bronze-light" aria-hidden="true"></span>
+        <div class="mx-auto grid max-w-7xl items-center gap-4 px-5 pt-20 md:px-8 md:pt-24 lg:grid-cols-[1.2fr_1fr] lg:gap-10">
+          <div class="min-w-0 pb-12 lg:pb-12">
+            <!-- Tema principal da página em destaque: selo com brilho bronze e ponto pulsante -->
+            <p class="selo-tema">
+              <span class="selo-tema__ponto" aria-hidden="true"></span>
               Aposentadoria da Pessoa com Deficiência
             </p>
-            <h1 class="mt-6 font-serif text-[2.1rem] leading-[1.15] font-medium text-ivory md:text-[3.1rem]">
+            <h1 class="mt-4 font-serif text-[1.6rem] leading-[1.2] font-medium text-ivory md:text-[2.1rem]">
               Você trabalha ou já trabalhou convivendo com uma limitação física, visual, auditiva ou outra condição de saúde?
             </h1>
-            <p class="mt-7 max-w-xl text-xl leading-relaxed text-ivory/75">
+            <p class="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ivory/75">
               Essa condição pode fazer diferença na sua aposentadoria, mesmo que você nunca tenha se considerado uma pessoa com deficiência. Cada caso precisa ser analisado individualmente.
             </p>
-            <!-- A pergunta 1 do formulário já começa aqui: um clique leva direto à pergunta 2 -->
-            <div class="mt-10 max-w-xl rounded-3xl border border-ivory/10 bg-white/[0.04] p-5 backdrop-blur-sm md:p-6">
-              <p class="text-xs font-semibold tracking-[0.18em] text-bronze-light uppercase">Comece sua análise · Pergunta 1 de 8</p>
-              <p id="hero-pergunta" class="mt-2 font-serif text-2xl leading-snug text-ivory">Você possui alguma limitação ou deficiência?</p>
-              <div class="mt-5 flex flex-wrap gap-2.5" role="group" aria-labelledby="hero-pergunta">
-                <button type="button" class="quiz-chip" data-inicio="Sim">Sim</button>
-                <button type="button" class="quiz-chip" data-inicio="Não tenho certeza">Não tenho certeza</button>
-                <button type="button" class="quiz-chip" data-inicio="Não sei se minha condição é considerada deficiência">Não sei se é considerada deficiência</button>
-              </div>
-              <p class="mt-4 flex items-center gap-2 text-base text-ivory/60">
-                <svg class="h-5 w-5 text-bronze-light" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                Responda algumas perguntas rápidas. Leva cerca de 2 minutos.
-              </p>
-            </div>
+            <!-- Credenciais: barra compacta abaixo dos textos -->
+              <ul class="hero-rodape mt-6">
+                <li>
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+                  <span><strong>OAB/SP 493.305</strong>Advogado Previdenciário</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 21l5-3 5 3-1.5-8.5"/></svg>
+                  <span><strong>6 anos</strong>em Direito Previdenciário</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                  <span><strong>Online</strong>em todo o Brasil</span>
+                </li>
+                <li>
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                  <span><strong>São Paulo/SP</strong>atendimento presencial</span>
+                </li>
+              </ul>
           </div>
           <img
-            src="/images/silvio-hero-800.webp"
-            srcset="/images/silvio-hero-800.webp 800w, /images/silvio-hero-1200.webp 1200w"
-            sizes="(min-width: 1024px) 45vw, (min-width: 768px) 448px, 90vw"
-            alt="Dr. Silvio Santana, advogado previdenciarista"
+            src="/images/silvio-cta.webp"
+            alt="Silvio Santana sorrindo, sentado à mesa"
             width="1066"
-            height="1600"
+            height="1392"
             fetchpriority="high"
-            class="photo-blend mx-auto w-full max-w-md lg:max-w-none"
+            class="photo-blend order-first mx-auto -mt-8 -mb-6 w-full max-w-[16rem] sm:max-w-[20rem] lg:order-none md:max-w-sm lg:-mt-4 lg:mb-0 lg:max-w-[27rem] lg:-translate-y-10"
           />
         </div>
       </section>
 
-      <!-- Faixa de confiança -->
-      <div class="border-t border-bronze/25 bg-ink">
-        <ul class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-x-6 gap-y-1 px-5 py-5 text-center text-base text-ivory/70 sm:flex-row sm:flex-wrap md:px-8">
-          <li class="font-serif text-lg text-ivory">Dr. Silvio Santana</li>
-          <li class="flex items-center gap-6 sm:before:h-1 sm:before:w-1 sm:before:rotate-45 sm:before:bg-bronze">Advogado Previdenciarista</li>
-          <li class="flex items-center gap-6 sm:before:h-1 sm:before:w-1 sm:before:rotate-45 sm:before:bg-bronze">[OAB/UF nº]</li>
-          <li class="flex items-center gap-6 sm:before:h-1 sm:before:w-1 sm:before:rotate-45 sm:before:bg-bronze">Atendimento [online e presencial]</li>
-        </ul>
-      </div>
-
       <!-- ============ Seção 2 — Situações ============ -->
-      <section id="situacoes" class="bg-ivory">
-        <div class="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <div class="mx-auto max-w-3xl text-center">
-            <p class="eyebrow eyebrow-center">Identificação</p>
-            <h2 class="section-title mt-5">Você se reconhece em alguma dessas situações?</h2>
-            <p class="mt-6 text-stone">
-              Muitas pessoas convivem por anos com uma limitação e seguem trabalhando, sem imaginar que isso pode ter importância para a aposentadoria.
-            </p>
+      <section id="situacoes" class="relative z-10 -mt-6 rounded-t-3xl bg-ivory md:-mt-14 md:rounded-t-[3.5rem]">
+        <div class="mx-auto max-w-7xl px-5 pt-7 pb-12 md:px-8 md:pt-12 md:pb-20">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div class="max-w-2xl">
+              <p class="eyebrow">Identificação</p>
+              <h2 class="section-title mt-2 !text-[1.3rem] md:mt-3 md:!text-[1.9rem]">Você se reconhece em alguma dessas situações?</h2>
+              <p class="mt-2 text-sm text-stone md:mt-3 md:text-[0.95rem]">Toque na sua situação para entender como ela pode ser avaliada.<span class="ml-1 font-semibold text-bronze-dark md:hidden">Deslize →</span></p>
+            </div>
+            <div class="hidden gap-2 md:flex">
+              <button type="button" class="carrossel-seta" data-carrossel="-1" aria-label="Situação anterior"></button>
+              <button type="button" class="carrossel-seta carrossel-seta--prox" data-carrossel="1" aria-label="Próxima situação"></button>
+            </div>
           </div>
 
-          <ul class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul class="carrossel mt-5 md:mt-8" aria-label="Situações">
             <li>
-              <a href="#analise" data-condicao="cond-coluna" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl border border-sand bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-bronze/50">
+              <a href="#painel-condicao" data-condicao="cond-coluna" aria-controls="painel-condicao" aria-expanded="false" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
                 <img src="/images/cards/coluna.webp" alt="" loading="lazy" class="card-photo" />
                 <svg class="box-content h-7 w-7 rounded-2xl bg-ivory p-3.5 text-bronze-dark transition duration-500 group-hover:bg-bronze group-hover:text-ink group-[.is-active]:bg-bronze group-[.is-active]:text-ink" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1.5"/><rect x="8" y="10" width="8" height="4" rx="1.5"/><rect x="8" y="18" width="8" height="4" rx="1.5"/><path d="M12 6v4M12 14v4"/></svg>
-                <span class="mt-6 font-serif text-2xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Coluna e ossos</span>
-                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85">Hérnia de disco, artrose, problemas nos joelhos ou quadris, dores e limitações que acompanham você há anos.</span>
+                <span class="mt-6 font-serif text-xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Coluna e ossos</span>
+                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85"><mark class="destaque">Hérnia de disco, artrose</mark>, problemas nos joelhos ou quadris, <mark class="destaque">dores e limitações</mark> que acompanham você há anos.</span>
+                <span class="card-cta">Ver se posso ter direito</span>
               </a>
             </li>
             <li>
-              <a href="#analise" data-condicao="cond-visao" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl border border-sand bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-bronze/50">
+              <a href="#painel-condicao" data-condicao="cond-visao" aria-controls="painel-condicao" aria-expanded="false" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
                 <img src="/images/cards/visao.webp" alt="" loading="lazy" class="card-photo" />
                 <svg class="box-content h-7 w-7 rounded-2xl bg-ivory p-3.5 text-bronze-dark transition duration-500 group-hover:bg-bronze group-hover:text-ink group-[.is-active]:bg-bronze group-[.is-active]:text-ink" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                <span class="mt-6 font-serif text-2xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Visão</span>
-                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85">Baixa visão, perda parcial da visão, visão monocular ou cegueira.</span>
+                <span class="mt-6 font-serif text-xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Visão</span>
+                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85"><mark class="destaque">Baixa visão</mark>, perda parcial da visão, <mark class="destaque">visão monocular</mark> ou cegueira.</span>
+                <span class="card-cta">Ver se posso ter direito</span>
               </a>
             </li>
             <li>
-              <a href="#analise" data-condicao="cond-audicao" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl border border-sand bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-bronze/50">
+              <a href="#painel-condicao" data-condicao="cond-audicao" aria-controls="painel-condicao" aria-expanded="false" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
                 <img src="/images/cards/audicao.webp" alt="" loading="lazy" class="card-photo" />
                 <svg class="box-content h-7 w-7 rounded-2xl bg-ivory p-3.5 text-bronze-dark transition duration-500 group-hover:bg-bronze group-hover:text-ink group-[.is-active]:bg-bronze group-[.is-active]:text-ink" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"/><path d="M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4"/></svg>
-                <span class="mt-6 font-serif text-2xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Audição</span>
-                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85">Perda auditiva, surdez ou dificuldade importante para se comunicar.</span>
+                <span class="mt-6 font-serif text-xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Audição</span>
+                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85"><mark class="destaque">Perda auditiva, surdez</mark> ou dificuldade importante para se comunicar.</span>
+                <span class="card-cta">Ver se posso ter direito</span>
               </a>
             </li>
             <li>
-              <a href="#analise" data-condicao="cond-mobilidade" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl border border-sand bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-bronze/50">
+              <a href="#painel-condicao" data-condicao="cond-mobilidade" aria-controls="painel-condicao" aria-expanded="false" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
                 <img src="/images/cards/mobilidade.webp" alt="" loading="lazy" class="card-photo" />
                 <svg class="box-content h-7 w-7 rounded-2xl bg-ivory p-3.5 text-bronze-dark transition duration-500 group-hover:bg-bronze group-hover:text-ink group-[.is-active]:bg-bronze group-[.is-active]:text-ink" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></svg>
-                <span class="mt-6 font-serif text-2xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Mobilidade</span>
-                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85">Dificuldade para andar ou ficar em pé, perda de força, uso de prótese, órtese ou outros aparelhos.</span>
+                <span class="mt-6 font-serif text-xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Mobilidade</span>
+                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85"><mark class="destaque">Dificuldade para andar</mark> ou ficar em pé, perda de força, uso de <mark class="destaque">prótese, órtese</mark> ou outros aparelhos.</span>
+                <span class="card-cta">Ver se posso ter direito</span>
               </a>
             </li>
             <li>
-              <a href="#analise" data-condicao="cond-acidente" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl border border-sand bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-bronze/50">
+              <a href="#painel-condicao" data-condicao="cond-acidente" aria-controls="painel-condicao" aria-expanded="false" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
                 <img src="/images/cards/acidente.webp" alt="" loading="lazy" class="card-photo" />
                 <svg class="box-content h-7 w-7 rounded-2xl bg-ivory p-3.5 text-bronze-dark transition duration-500 group-hover:bg-bronze group-hover:text-ink group-[.is-active]:bg-bronze group-[.is-active]:text-ink" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                <span class="mt-6 font-serif text-2xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Sequelas de acidente</span>
-                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85">Fraturas que deixaram sequelas, amputações ou limitação de movimentos depois de um acidente.</span>
+                <span class="mt-6 font-serif text-xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Sequelas de acidente</span>
+                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85"><mark class="destaque">Fraturas que deixaram sequelas</mark>, <mark class="destaque">amputações</mark> ou limitação de movimentos depois de um acidente.</span>
+                <span class="card-cta">Ver se posso ter direito</span>
               </a>
             </li>
             <li>
-              <a href="#analise" data-condicao="cond-mental" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl border border-sand bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-bronze/50">
+              <a href="#painel-condicao" data-condicao="cond-mental" aria-controls="painel-condicao" aria-expanded="false" class="group card-hover relative isolate overflow-hidden flex h-full flex-col rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
                 <img src="/images/cards/mental.webp" alt="" loading="lazy" class="card-photo" />
                 <svg class="box-content h-7 w-7 rounded-2xl bg-ivory p-3.5 text-bronze-dark transition duration-500 group-hover:bg-bronze group-hover:text-ink group-[.is-active]:bg-bronze group-[.is-active]:text-ink" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
-                <span class="mt-6 font-serif text-2xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Intelectual, mental ou psicossocial</span>
-                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85">Condições de longo prazo que afetam sua forma de trabalhar, aprender ou se relacionar.</span>
-              </a>
-            </li>
-            <li class="sm:col-span-2 lg:col-span-3">
-              <a href="#analise" data-condicao="cond-outro" class="group card-hover relative isolate overflow-hidden flex h-full flex-col gap-6 rounded-3xl bg-graphite p-8 transition duration-300 hover:-translate-y-1 hover:bg-graphite-light md:flex-row md:items-center">
-                <img src="/images/cards/outra.webp" alt="" loading="lazy" class="card-photo object-[center_22%]" />
-                <svg class="box-content h-7 w-7 shrink-0 rounded-2xl bg-white/10 p-3.5 text-bronze-light" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-                <span class="flex-1">
-                  <span class="block font-serif text-2xl font-medium text-ivory">Outra condição</span>
-                  <span class="mt-2 block text-base leading-relaxed text-ivory/70">Tem outra situação que dificulta seu trabalho ou seu dia a dia? Conte para nós.</span>
-                </span>
-                <span class="arrow-circle arrow-circle-light" aria-hidden="true"></span>
+                <span class="mt-6 font-serif text-xl font-medium text-ink transition-colors duration-500 group-hover:text-ivory group-[.is-active]:text-ivory">Intelectual, mental ou psicossocial</span>
+                <span class="mt-3 text-base leading-relaxed text-stone transition-colors duration-500 group-hover:text-ivory/85 group-[.is-active]:text-ivory/85"><mark class="destaque">Condições de longo prazo</mark> que afetam sua forma de trabalhar, aprender ou se relacionar.</span>
+                <span class="card-cta">Ver se posso ter direito</span>
               </a>
             </li>
           </ul>
 
-          <div class="mt-16 text-center">
-            <p class="font-serif text-2xl text-ink italic">Se você se identificou com alguma dessas situações, vale a pena analisar o seu caso.</p>
-            <a href="#analise" class="btn-cta mt-8">Quero analisar meu caso</a>
+          <!-- Painel de detalhes: abre com animação ao clicar num card (conteúdo em main.js). [Nota] Textos a validar pelo Silvio. -->
+          <div id="painel-condicao" class="painel-condicao" aria-live="polite">
+            <div class="painel-condicao__mola">
+              <div class="painel-condicao__card">
+                <img class="painel-condicao__foto" src="" alt="" />
+                <div class="painel-condicao__conteudo">
+                  <p class="eyebrow">Sobre a sua situação</p>
+                  <h3 class="painel-condicao__titulo"></h3>
+                  <p class="painel-condicao__texto"></p>
+                  <p class="painel-condicao__subtitulo">O que é analisado no seu caso</p>
+                  <ul class="painel-condicao__lista">
+                    <li>Há quanto tempo a condição existe</li>
+                    <li>Como ela afeta o seu trabalho e o dia a dia</li>
+                    <li>O seu histórico de contribuições ao INSS</li>
+                    <li>Exames, laudos e relatórios que você tiver</li>
+                  </ul>
+                  <div class="painel-condicao__acoes">
+                    <a href="https://wa.me/" data-whatsapp="painel-condicao" target="_blank" rel="noopener" class="btn-cta btn-sm">Falar com a equipe sobre isso</a>
+                    <button type="button" class="painel-condicao__fechar">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
 
       <!-- ============ Seção 3 — Nunca se considerou PcD ============ -->
-      <section id="entenda" class="bg-white">
-        <div class="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:px-8 md:py-28 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+      <section id="entenda" class="on-dark relative isolate overflow-hidden bg-ink">
+        <!-- Vídeo de fundo (Pexels, licença gratuita). Toca sem som, em loop; um véu escuro garante a leitura do texto. -->
+        <video class="video-fundo" autoplay muted loop playsinline preload="metadata" poster="/videos/entenda-poster.jpg" aria-hidden="true">
+          <source src="/videos/entenda.mp4" type="video/mp4" />
+        </video>
+        <div class="video-veu" aria-hidden="true"></div>
+        <div class="mx-auto grid max-w-7xl gap-5 px-5 pt-14 pb-10 md:gap-10 md:px-8 md:py-28 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <div>
             <p class="eyebrow">Um ponto importante</p>
-            <h2 class="section-title mt-5">Nunca se considerou uma pessoa com deficiência? Isso é mais comum do que parece.</h2>
+            <h2 class="section-title mt-3 md:mt-5">Nunca se considerou uma pessoa com deficiência? Isso é mais comum do que parece.</h2>
           </div>
-          <div data-reveal class="space-y-6 text-lg leading-relaxed text-graphite/90 lg:pt-10">
+          <div data-reveal class="space-y-4 text-sm leading-relaxed text-ivory/85 md:space-y-6 md:text-base lg:pt-10">
             <p>
               Muitas pessoas passam anos trabalhando com uma limitação e nunca pensam em si mesmas como "PcD". Às vezes porque a condição veio aos poucos. Às vezes porque simplesmente se acostumaram a conviver com ela.
             </p>
@@ -350,281 +377,135 @@
             <p>Por isso, cada caso precisa ser analisado com cuidado. Uma mesma condição pode ter peso diferente na vida de duas pessoas.</p>
           </div>
         </div>
-        <div class="mx-auto max-w-5xl px-5 pb-20 md:px-8 md:pb-28">
-          <figure class="relative border-y border-bronze/40 py-12 text-center md:py-16">
-            <span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-white px-4 font-serif text-6xl leading-none text-bronze" aria-hidden="true">“</span>
-            <blockquote class="font-serif text-2xl leading-snug text-ink italic md:text-[2.1rem]">
+        <div class="mx-auto max-w-5xl px-5 pb-14 md:px-8 md:pb-28">
+          <figure class="relative border-y border-bronze/40 py-9 text-center md:py-16">
+            <span class="absolute -top-7 left-1/2 -translate-x-1/2 px-4 font-serif text-5xl leading-none text-bronze-light" aria-hidden="true">“</span>
+            <blockquote class="font-serif text-lg leading-snug text-ivory italic md:text-2xl">
               Você não precisa saber se tem direito. Precisa apenas contar a sua história. A análise é com a gente.
             </blockquote>
           </figure>
-          <div class="mt-12 text-center">
-            <a href="#analise" class="btn-cta">Quero saber se posso ter direito</a>
-          </div>
         </div>
       </section>
 
-      <!-- ============ Seção 4 — Regras ============ -->
+      <!-- ============ Seção 4 — Regras (fluxo animado) ============ -->
       <!-- [Nota] Pedir ao Silvio que confirme os números e o texto antes de publicar. -->
       <section id="regras" class="bg-ivory">
-        <div class="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <div class="mx-auto max-w-3xl text-center">
+        <div class="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-20">
+          <div class="mx-auto max-w-2xl text-center">
             <p class="eyebrow eyebrow-center">As regras</p>
-            <h2 class="section-title mt-5">Como funciona a aposentadoria da pessoa com deficiência</h2>
-            <p class="mt-6 text-stone">
-              A lei prevê regras diferenciadas para quem trabalhou na condição de pessoa com deficiência. Em muitos casos, isso significa se aposentar com menos tempo de contribuição ou com menos idade. Existem dois caminhos:
-            </p>
+            <h2 class="section-title mt-3">Como funciona a aposentadoria da pessoa com deficiência</h2>
+            <p class="mt-3 text-sm text-stone md:text-[0.95rem]">A lei prevê regras diferenciadas, com menos tempo de contribuição ou menos idade. Existem dois caminhos:</p>
           </div>
 
-          <div class="mt-14 grid gap-6 lg:grid-cols-[1.45fr_1fr]">
-            <!-- min-w-0: impede que a tabela force o card a ficar mais largo que a tela no celular -->
-            <article class="min-w-0 rounded-3xl border border-sand bg-white p-5 sm:p-7 md:p-10">
-              <p class="text-sm font-semibold tracking-[0.2em] text-bronze-dark uppercase">Caminho A</p>
-              <h3 class="mt-2 font-serif text-[1.7rem] leading-tight font-medium text-ink sm:text-3xl">Por tempo de contribuição</h3>
-              <p class="mt-3 text-stone">O tempo exigido depende do grau da deficiência, definido em avaliação médica e social do INSS.</p>
-              <!-- No celular as células mostram "25 anos"; a partir de telas médias, "25 anos de contribuição" -->
-              <div class="mt-8 overflow-x-auto">
-                <table class="w-full text-left">
-                  <caption class="sr-only">Anos de contribuição exigidos na aposentadoria da pessoa com deficiência, por grau da deficiência e sexo</caption>
-                  <thead>
-                    <tr class="border-b-2 border-graphite text-xs text-stone sm:text-sm sm:tracking-[0.12em] sm:uppercase">
-                      <th scope="col" class="py-3 pr-2 font-semibold sm:pr-4"><span class="sm:hidden">Grau</span><span class="hidden sm:inline">Grau da deficiência</span></th>
-                      <th scope="col" class="px-2 py-3 font-semibold sm:px-4">Homens</th>
-                      <th scope="col" class="py-3 pl-2 font-semibold sm:pl-4">Mulheres</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-sand">
-                    <tr>
-                      <th scope="row" class="py-4 pr-2 font-serif text-lg font-medium text-ink sm:py-5 sm:pr-4 sm:text-xl">Grave</th>
-                      <td class="px-2 py-4 sm:px-4 sm:py-5"><strong class="block font-serif text-2xl leading-none font-medium text-ink sm:inline">25</strong> anos<span class="hidden sm:inline"> de contribuição</span></td>
-                      <td class="py-4 pl-2 sm:py-5 sm:pl-4"><strong class="block font-serif text-2xl leading-none font-medium text-ink sm:inline">20</strong> anos<span class="hidden sm:inline"> de contribuição</span></td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="py-4 pr-2 font-serif text-lg font-medium text-ink sm:py-5 sm:pr-4 sm:text-xl">Moderada</th>
-                      <td class="px-2 py-4 sm:px-4 sm:py-5"><strong class="block font-serif text-2xl leading-none font-medium text-ink sm:inline">29</strong> anos<span class="hidden sm:inline"> de contribuição</span></td>
-                      <td class="py-4 pl-2 sm:py-5 sm:pl-4"><strong class="block font-serif text-2xl leading-none font-medium text-ink sm:inline">24</strong> anos<span class="hidden sm:inline"> de contribuição</span></td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="py-4 pr-2 font-serif text-lg font-medium text-ink sm:py-5 sm:pr-4 sm:text-xl">Leve</th>
-                      <td class="px-2 py-4 sm:px-4 sm:py-5"><strong class="block font-serif text-2xl leading-none font-medium text-ink sm:inline">33</strong> anos<span class="hidden sm:inline"> de contribuição</span></td>
-                      <td class="py-4 pl-2 sm:py-5 sm:pl-4"><strong class="block font-serif text-2xl leading-none font-medium text-ink sm:inline">28</strong> anos<span class="hidden sm:inline"> de contribuição</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p class="mt-3 text-sm text-stone sm:hidden">Tempo mínimo de contribuição.</p>
-              </div>
-            </article>
+          <!-- Fluxo: ponto de partida -> linhas que se desenham -> dois caminhos. A animação começa quando a seção aparece (main.js adiciona .fluxo-ativo). -->
+          <div class="fluxo mt-7 md:mt-10">
+            <div class="fluxo__inicio">
+              <span class="fluxo__icone" aria-hidden="true">
+                <svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>
+              </span>
+              <span>Você trabalhou convivendo com uma deficiência</span>
+            </div>
 
-            <article class="bg-studio on-dark flex min-w-0 flex-col rounded-3xl p-5 text-ivory sm:p-7 md:p-10">
-              <p class="text-sm font-semibold tracking-[0.2em] text-bronze-light uppercase">Caminho B</p>
-              <h3 class="mt-2 font-serif text-3xl font-medium">Por idade</h3>
-              <div class="mt-10 grid grid-cols-2 divide-x divide-ivory/15 text-center">
-                <div class="px-2">
-                  <p class="font-serif text-6xl font-medium text-bronze-light">60</p>
-                  <p class="mt-2 text-base text-ivory/70">anos para homens</p>
+            <svg class="fluxo__ramos" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M200 0 V24 Q200 30 194 30 H106 Q100 30 100 36 V60" />
+              <path d="M200 0 V24 Q200 30 206 30 H294 Q300 30 300 36 V60" />
+            </svg>
+
+            <div class="fluxo__caminhos">
+              <article class="fluxo__card">
+                <p class="fluxo__rotulo">Caminho A</p>
+                <h3 class="fluxo__titulo">Por tempo de contribuição</h3>
+                <p class="fluxo__sub">Depende do grau da deficiência, definido em avaliação médica e social do INSS.</p>
+                <ul class="fluxo__graus">
+                  <li><span>Grave</span><strong>25</strong><em>homens</em><strong>20</strong><em>mulheres</em></li>
+                  <li><span>Moderada</span><strong>29</strong><em>homens</em><strong>24</strong><em>mulheres</em></li>
+                  <li><span>Leve</span><strong>33</strong><em>homens</em><strong>28</strong><em>mulheres</em></li>
+                </ul>
+                <p class="fluxo__nota">anos de contribuição</p>
+              </article>
+
+              <article class="fluxo__card fluxo__card--escuro">
+                <p class="fluxo__rotulo">Caminho B</p>
+                <h3 class="fluxo__titulo">Por idade</h3>
+                <p class="fluxo__sub">Qualquer que seja o grau da deficiência.</p>
+                <div class="fluxo__idades">
+                  <div><strong>60</strong><em>anos · homens</em></div>
+                  <div><strong>55</strong><em>anos · mulheres</em></div>
                 </div>
-                <div class="px-2">
-                  <p class="font-serif text-6xl font-medium text-bronze-light">55</p>
-                  <p class="mt-2 text-base text-ivory/70">anos para mulheres</p>
-                </div>
-              </div>
-              <p class="mt-auto border-t border-ivory/15 pt-6 text-ivory/85">
-                Com pelo menos <strong class="font-semibold text-ivory">15 anos de contribuição</strong> na condição de pessoa com deficiência, qualquer que seja o grau.
-              </p>
-            </article>
+                <p class="fluxo__nota">+ pelo menos <b>15 anos</b> de contribuição como pessoa com deficiência</p>
+              </article>
+            </div>
           </div>
 
-          <p class="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-stone">
-            Essas são as regras gerais da Lei Complementar 142/2013. O direito e o valor do benefício dependem do seu histórico de contribuições, do período em que a condição existiu e da avaliação do INSS. Por isso, a análise individual é essencial.
+          <p class="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-stone">
+            Regras gerais da Lei Complementar 142/2013. O direito e o valor do benefício dependem do seu histórico de contribuições, do período em que a condição existiu e da avaliação do INSS.
           </p>
-          <div class="mt-12 text-center">
-            <a href="#analise" class="btn-cta">Quero analisar meu caso</a>
+        </div>
+      </section>
+
+      <!-- ============ Seção 4.5 — Vídeo ============ -->
+      <!-- Vídeo gravado no celular (vertical). Original em fotos-originais/videos/. [Nota] Título e texto provisórios: validar com o Silvio. -->
+      <section id="video" class="bg-white">
+        <div class="mx-auto grid max-w-5xl items-center gap-8 px-5 py-12 md:grid-cols-[1fr_auto] md:gap-14 md:px-8 md:py-16">
+          <div class="text-center md:text-left">
+            <p class="eyebrow eyebrow-center md:justify-start md:after:hidden">Em vídeo</p>
+            <h2 class="section-title mt-3 md:!text-[2.4rem] md:!leading-[1.15]">Silvio Santana explica a aposentadoria da pessoa com deficiência</h2>
+            <p class="mt-4 text-base text-stone md:text-lg">Em pouco mais de um minuto, entenda quem pode ter direito e por que vale a pena analisar o seu caso.</p>
+            <!-- Seta de fluxo: desce e faz a curva para a direita, apontando para o vídeo (desenha-se ao aparecer) -->
+            <svg class="seta-fluxo" viewBox="0 0 220 150" fill="none" aria-hidden="true">
+              <path class="seta-fluxo__linha" d="M20 6 C 20 70, 40 118, 110 124 S 190 124, 208 124" />
+              <path class="seta-fluxo__ponta" d="M196 112 L210 124 L196 136" />
+            </svg>
+
+          </div>
+
+          <!-- Mockup de iPhone: o vídeo fica na área da tela e a moldura do aparelho por cima -->
+          <div class="video-moldura">
+            <!-- Sem opção de download no menu do player (controlslist="nodownload") e sem "picture-in-picture" -->
+            <video controls controlslist="nodownload noplaybackrate" disablepictureinpicture playsinline preload="metadata" poster="/videos/apresentacao-capa.jpg" width="720" height="1460">
+              <source src="/videos/apresentacao.mp4" type="video/mp4" />
+              Seu navegador não reproduz vídeos.
+            </video>
+            <img class="video-moldura__aparelho" src="/images/mockup-iphone.png" alt="" width="389" height="800" loading="lazy" />
           </div>
         </div>
       </section>
 
-      <!-- ============ Seção 5 — Formulário de triagem ============ -->
+      <!-- ============ Seção 5 — Contato pelo WhatsApp (substitui o formulário de triagem) ============ -->
       <section id="analise" class="bg-studio on-dark">
-        <div class="mx-auto max-w-2xl px-5 py-20 md:py-28">
-          <div class="text-center">
-            <p class="eyebrow eyebrow-center">Análise inicial</p>
-            <h2 class="section-title mt-5">Conte um pouco sobre você</h2>
-            <p class="mt-5 text-ivory/70">São perguntas simples. Não se preocupe se não souber responder alguma com exatidão.</p>
-          </div>
-
-          <div class="mt-12 rounded-[2rem] bg-white p-6 md:p-10">
-            <form id="triagem" novalidate>
-              <!-- Barra de progresso -->
-              <div class="mb-10">
-                <p id="progresso-texto" class="text-sm font-semibold tracking-[0.15em] text-stone uppercase">Pergunta 1 de 8</p>
-                <div class="mt-3 h-2 overflow-hidden rounded-full bg-sand" role="progressbar" aria-labelledby="progresso-texto" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1">
-                  <div id="progresso-barra" class="h-full rounded-full bg-bronze transition-all duration-500" style="width: 12.5%"></div>
-                </div>
-              </div>
-
-              <!-- 1 -->
-              <fieldset data-step>
-                <legend class="font-serif text-[1.7rem] leading-snug font-medium text-ink">Você possui alguma limitação ou deficiência?</legend>
-                <div class="mt-7 space-y-3">
-                  <label class="quiz-option"><input type="radio" name="limitacao" value="Sim" required /> Sim</label>
-                  <label class="quiz-option"><input type="radio" name="limitacao" value="Não tenho certeza" /> Não tenho certeza</label>
-                  <label class="quiz-option"><input type="radio" name="limitacao" value="Não sei se minha condição é considerada deficiência" /> Não sei se minha condição é considerada deficiência</label>
-                </div>
-              </fieldset>
-
-              <!-- 2 -->
-              <fieldset data-step hidden>
-                <legend class="font-serif text-[1.7rem] leading-snug font-medium text-ink">Qual tipo de condição você possui?</legend>
-                <p class="mt-2 text-base text-stone">Pode marcar mais de uma.</p>
-                <div class="mt-7 space-y-3">
-                  <label class="quiz-option"><input type="checkbox" name="condicao" id="cond-coluna" value="Coluna / ortopédico" /> Coluna / ortopédico</label>
-                  <label class="quiz-option"><input type="checkbox" name="condicao" id="cond-visao" value="Visão" /> Visão</label>
-                  <label class="quiz-option"><input type="checkbox" name="condicao" id="cond-audicao" value="Audição" /> Audição</label>
-                  <label class="quiz-option"><input type="checkbox" name="condicao" id="cond-mobilidade" value="Mobilidade" /> Mobilidade</label>
-                  <label class="quiz-option"><input type="checkbox" name="condicao" id="cond-acidente" value="Sequela de acidente" /> Sequela de acidente</label>
-                  <label class="quiz-option"><input type="checkbox" name="condicao" id="cond-mental" value="Intelectual / mental / psicossocial" /> Intelectual / mental / psicossocial</label>
-                  <label class="quiz-option"><input type="checkbox" name="condicao" id="cond-outro" value="Outro" /> Outro</label>
-                  <div id="condicao-outro-wrap" hidden>
-                    <label for="condicao-outro" class="sr-only">Descreva sua condição</label>
-                    <input type="text" id="condicao-outro" name="condicaoOutro" class="quiz-input" placeholder="Descreva sua condição" maxlength="200" />
-                  </div>
-                </div>
-              </fieldset>
-
-              <!-- 3 -->
-              <fieldset data-step hidden>
-                <legend class="font-serif text-[1.7rem] leading-snug font-medium text-ink">Há quanto tempo você convive com essa condição?</legend>
-                <div class="mt-7 space-y-3">
-                  <label class="quiz-option"><input type="radio" name="tempoCondicao" value="Menos de 2 anos" data-msg="há menos de 2 anos" /> Menos de 2 anos</label>
-                  <label class="quiz-option"><input type="radio" name="tempoCondicao" value="De 2 a 5 anos" data-msg="há 2 a 5 anos" /> De 2 a 5 anos</label>
-                  <label class="quiz-option"><input type="radio" name="tempoCondicao" value="De 5 a 10 anos" data-msg="há 5 a 10 anos" /> De 5 a 10 anos</label>
-                  <label class="quiz-option"><input type="radio" name="tempoCondicao" value="Mais de 10 anos" data-msg="há mais de 10 anos" /> Mais de 10 anos</label>
-                  <label class="quiz-option"><input type="radio" name="tempoCondicao" value="Desde o nascimento ou a infância" data-msg="desde o nascimento ou a infância" /> Desde o nascimento ou a infância</label>
-                </div>
-              </fieldset>
-
-              <!-- 4 -->
-              <fieldset data-step hidden>
-                <legend class="font-serif text-[1.7rem] leading-snug font-medium text-ink">Como você trabalha ou trabalhou?</legend>
-                <p class="mt-2 text-base text-stone">Pode marcar mais de uma.</p>
-                <div class="mt-7 space-y-3">
-                  <label class="quiz-option"><input type="checkbox" name="vinculo" value="Com carteira assinada" data-msg="carteira assinada" /> Com carteira assinada</label>
-                  <label class="quiz-option"><input type="checkbox" name="vinculo" value="Como autônomo, pagando o INSS" data-msg="autônomo" /> Como autônomo, pagando o INSS</label>
-                  <label class="quiz-option"><input type="checkbox" name="vinculo" value="Como servidor público" data-msg="servidor público" /> Como servidor público</label>
-                  <label class="quiz-option"><input type="checkbox" name="vinculo" id="vinculo-nunca" value="Nunca contribuí para o INSS" data-msg="nunca contribuí" /> Nunca contribuí para o INSS</label>
-                </div>
-              </fieldset>
-
-              <!-- 5 -->
-              <fieldset data-step hidden>
-                <legend class="font-serif text-[1.7rem] leading-snug font-medium text-ink">Há quanto tempo, aproximadamente, você contribui para o INSS?</legend>
-                <div class="mt-7 space-y-3">
-                  <label class="quiz-option"><input type="radio" name="tempoContribuicao" value="Menos de 10 anos" data-msg="Contribuo para o INSS há menos de 10 anos" /> Menos de 10 anos</label>
-                  <label class="quiz-option"><input type="radio" name="tempoContribuicao" value="De 10 a 20 anos" data-msg="Contribuo para o INSS há 10 a 20 anos" /> De 10 a 20 anos</label>
-                  <label class="quiz-option"><input type="radio" name="tempoContribuicao" value="De 20 a 30 anos" data-msg="Contribuo para o INSS há 20 a 30 anos" /> De 20 a 30 anos</label>
-                  <label class="quiz-option"><input type="radio" name="tempoContribuicao" value="Mais de 30 anos" data-msg="Contribuo para o INSS há mais de 30 anos" /> Mais de 30 anos</label>
-                  <label class="quiz-option"><input type="radio" name="tempoContribuicao" value="Não sei" data-msg="Não sei há quanto tempo contribuo para o INSS" /> Não sei</label>
-                </div>
-              </fieldset>
-
-              <!-- 6 -->
-              <fieldset data-step hidden>
-                <legend class="font-serif text-[1.7rem] leading-snug font-medium text-ink">Você possui documentos médicos, exames ou laudos?</legend>
-                <div class="mt-7 space-y-3">
-                  <label class="quiz-option"><input type="radio" name="documentos" value="Sim" data-msg="sim" /> Sim</label>
-                  <label class="quiz-option"><input type="radio" name="documentos" value="Alguns" data-msg="alguns" /> Alguns</label>
-                  <label class="quiz-option"><input type="radio" name="documentos" value="Não" data-msg="não" /> Não</label>
-                </div>
-              </fieldset>
-
-              <!-- 7 -->
-              <fieldset data-step hidden>
-                <legend class="font-serif text-[1.7rem] leading-snug font-medium text-ink">Qual é a sua idade?</legend>
-                <div class="mt-7 space-y-3">
-                  <label class="quiz-option"><input type="radio" name="idade" value="Até 40 anos" data-msg="até 40 anos" /> Até 40 anos</label>
-                  <label class="quiz-option"><input type="radio" name="idade" value="De 41 a 50 anos" data-msg="entre 41 e 50 anos" /> De 41 a 50 anos</label>
-                  <label class="quiz-option"><input type="radio" name="idade" value="De 51 a 60 anos" data-msg="entre 51 e 60 anos" /> De 51 a 60 anos</label>
-                  <label class="quiz-option"><input type="radio" name="idade" value="Mais de 60 anos" data-msg="mais de 60 anos" /> Mais de 60 anos</label>
-                </div>
-              </fieldset>
-
-              <!-- 8 -->
-              <fieldset data-step hidden>
-                <legend class="font-serif text-[1.7rem] leading-snug font-medium text-ink">Seus dados para contato</legend>
-                <div class="mt-7 space-y-5">
-                  <div>
-                    <label for="nome" class="mb-2 block text-base font-semibold">Nome</label>
-                    <input type="text" id="nome" name="nome" class="quiz-input" autocomplete="name" required maxlength="100" />
-                  </div>
-                  <div>
-                    <label for="whatsapp" class="mb-2 block text-base font-semibold">WhatsApp</label>
-                    <input type="tel" id="whatsapp" name="whatsapp" class="quiz-input" autocomplete="tel-national" inputmode="numeric" placeholder="(00) 00000-0000" required aria-describedby="whatsapp-dica" />
-                    <p id="whatsapp-dica" class="mt-1.5 text-sm text-stone">Usaremos seu WhatsApp apenas para falar sobre o seu caso.</p>
-                  </div>
-                  <div>
-                    <label for="cidade" class="mb-2 block text-base font-semibold">Cidade / UF</label>
-                    <input type="text" id="cidade" name="cidade" class="quiz-input" autocomplete="address-level2" placeholder="Ex.: São Paulo / SP" required maxlength="100" />
-                  </div>
-                  <div>
-                    <label for="mensagem" class="mb-2 block text-base font-semibold">Quer contar algo mais sobre a sua situação? <span class="font-normal text-stone">(opcional)</span></label>
-                    <textarea id="mensagem" name="mensagem" rows="3" class="quiz-input" maxlength="1000"></textarea>
-                  </div>
-                  <label class="flex cursor-pointer items-start gap-3 border-t border-sand pt-5 text-base text-graphite/90">
-                    <input type="checkbox" name="consentimento" id="consentimento" class="mt-1 h-5 w-5 shrink-0 accent-bronze-dark" required />
-                    <span>
-                      Autorizo o uso das informações enviadas, inclusive dados sobre minha saúde, exclusivamente para a análise do meu caso, conforme a
-                      <a href="/politica-de-privacidade.html" target="_blank" class="font-semibold text-bronze-dark underline underline-offset-2">Política de Privacidade</a>.
-                    </span>
-                  </label>
-                </div>
-              </fieldset>
-
-              <p id="quiz-erro" class="mt-5 font-medium text-red-800" role="alert"></p>
-
-              <div class="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
-                <button type="button" id="quiz-voltar" class="btn-ghost" hidden>Voltar</button>
-                <button type="button" id="quiz-avancar" class="btn-cta sm:ml-auto">Continuar</button>
-                <button type="submit" id="quiz-enviar" class="btn-cta sm:ml-auto" hidden>Enviar e falar com o advogado</button>
-              </div>
-            </form>
-
-            <!-- Tela final -->
-            <div id="tela-obrigado" class="py-4 text-center" hidden tabindex="-1">
-              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-bronze text-bronze-dark" aria-hidden="true">
-                <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg>
-              </div>
-              <p class="mt-6 font-serif text-3xl font-medium text-ink">Obrigado!</p>
-              <p class="mt-4 leading-relaxed text-graphite/90">
-                Essas informações ajudam nossa equipe a entender melhor o seu caso. Agora é só falar com o Dr. Silvio Santana para saber quais possibilidades podem existir para a sua situação.
+        <div class="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-16">
+          <div class="grid items-center gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
+            <div>
+              <p class="eyebrow">Fale com a gente</p>
+              <h2 class="section-title mt-3">Conte a sua história pelo WhatsApp</h2>
+              <p class="mt-3 max-w-lg text-[0.95rem] text-ivory/75">
+                Sem formulários e sem complicação. Você conversa diretamente com a nossa equipe e entende quais caminhos podem existir para o seu caso.
               </p>
-              <a id="link-whatsapp" href="#" target="_blank" rel="noopener" class="mt-8 inline-flex items-center justify-center gap-3 rounded-full bg-[#1d7a47] px-8 py-4 text-lg font-semibold text-white transition hover:bg-[#16663a]">
-                <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.81 11.81 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41"/></svg>
-                Falar com o advogado no WhatsApp
-              </a>
+              <div class="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center sm:justify-start sm:text-left">
+                <a href="https://wa.me/" data-whatsapp="secao-whatsapp" target="_blank" rel="noopener" class="btn-whatsapp !w-full !px-7 !py-3.5 !text-base sm:!w-auto">
+                  <svg class="h-6 w-6 shrink-0" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.81 11.81 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41"/></svg>
+                  Conversar no WhatsApp
+                </a>
+                <p class="text-sm text-ivory/55">A conversa abre com uma mensagem pronta.</p>
+              </div>
             </div>
 
-            <!-- Tela final alternativa: "Nunca contribuí para o INSS" — [Nota] texto provisório, definir com o Silvio -->
-            <div id="tela-sem-contribuicao" class="py-4 text-center" hidden tabindex="-1">
-              <p class="font-serif text-3xl font-medium text-ink">Obrigado!</p>
-              <p class="mt-4 leading-relaxed text-graphite/90">
-                Recebemos as suas informações. Nossa equipe vai avaliar o seu caso e, se houver algum caminho possível para a sua situação, entraremos em contato pelo WhatsApp informado.
-              </p>
+            <div class="rounded-2xl bg-white/[0.04] p-4 lg:rounded-none lg:border-l lg:border-ivory/10 lg:bg-transparent lg:p-0 lg:pl-10">
+              <p class="font-serif text-base text-ivory md:text-lg">O que você pode contar na conversa</p>
+              <ul class="mt-3 grid gap-2 text-[0.82rem] text-ivory/80 md:mt-4 md:gap-2.5 md:text-sm">
+                <li class="flex items-start gap-2.5"><span class="check-bronze" aria-hidden="true"></span>Qual é a sua condição e há quanto tempo convive com ela</li>
+                <li class="flex items-start gap-2.5"><span class="check-bronze" aria-hidden="true"></span>Como você trabalha ou trabalhou (carteira, autônomo, servidor)</li>
+                <li class="flex items-start gap-2.5"><span class="check-bronze" aria-hidden="true"></span>Há quanto tempo, mais ou menos, contribui para o INSS</li>
+                <li class="flex items-start gap-2.5"><span class="check-bronze" aria-hidden="true"></span>Se tem exames, laudos ou relatórios médicos</li>
+              </ul>
             </div>
           </div>
 
-          <!-- Sinais de confiança logo abaixo do formulário. [Nota] Dr. Silvio deve validar os textos. -->
-          <ul class="mt-8 grid gap-4 text-base text-ivory/75 sm:grid-cols-3 sm:gap-6">
-            <li class="flex items-start gap-3">
-              <svg class="mt-0.5 h-5 w-5 shrink-0 text-bronze-light" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-              <span>Informações confidenciais, protegidas pelo sigilo profissional e pela LGPD.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="mt-0.5 h-5 w-5 shrink-0 text-bronze-light" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-              <span>Seu caso é analisado pessoalmente pelo Dr. Silvio Santana.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="mt-0.5 h-5 w-5 shrink-0 text-bronze-light" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-              <span>Você entende as possibilidades e decide os próximos passos, sem pressão.</span>
-            </li>
+          <!-- Sinais de confiança. [Nota] Silvio deve validar os textos. -->
+          <ul class="mt-6 flex flex-col gap-2 border-t border-ivory/10 pt-4 text-[0.72rem] md:mt-8 md:pt-5 md:text-xs text-ivory/60 sm:flex-row sm:flex-wrap sm:gap-x-8">
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 shrink-0 text-bronze-light" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Informações confidenciais, protegidas pelo sigilo profissional e pela LGPD.</span></li>
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 shrink-0 text-bronze-light" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Seu caso é analisado individualmente com a nossa equipe especializada.</span></li>
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 shrink-0 text-bronze-light" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Você entende as possibilidades e decide os próximos passos, sem pressão.</span></li>
           </ul>
         </div>
       </section>
@@ -636,7 +517,7 @@
             <div class="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] border border-bronze md:translate-x-6 md:translate-y-6" aria-hidden="true"></div>
             <img
               src="/images/silvio-sobre.webp"
-              alt="Dr. Silvio Santana segurando um Manual de Direito Previdenciário"
+              alt="Silvio Santana segurando um Manual de Direito Previdenciário"
               width="1080"
               height="1350"
               loading="lazy"
@@ -645,204 +526,293 @@
           </div>
           <div>
             <p class="eyebrow">Quem vai analisar o seu caso</p>
-            <h2 class="section-title mt-5">Dr. Silvio Santana</h2>
-            <p class="mt-3 text-base font-semibold tracking-[0.15em] text-stone uppercase">Advogado Previdenciarista · [OAB/UF nº]</p>
+            <h2 class="section-title mt-5">Silvio Santana</h2>
+            <p class="mt-3 text-base font-semibold tracking-[0.15em] text-stone uppercase">Advogado Previdenciário · OAB/SP 493.305</p>
             <div class="mt-8 space-y-5 leading-relaxed text-graphite/90">
               <p>
-                Sou advogado com atuação em Direito Previdenciário há [X anos]. Ao longo desse tempo, conheci muitas pessoas que trabalharam a vida inteira convivendo com uma limitação e não sabiam que isso poderia ser considerado na aposentadoria.
+                Sou advogado com atuação em Direito Previdenciário há 6 anos. Ao longo desse tempo, conheci muitas pessoas que trabalharam a vida inteira convivendo com uma limitação e não sabiam que isso poderia ser considerado na aposentadoria.
               </p>
               <p>
-                Meu trabalho é ouvir a sua história com atenção, analisar o seu histórico de contribuições e explicar, com clareza e sem juridiquês, quais caminhos podem existir para o seu caso.
+                Meu trabalho é voltado para uma análise individualizada de cada caso, considerando a história profissional, as condições vivenciadas e toda a documentação previdenciária, para orientar o cliente com clareza e segurança na busca pelo benefício a que possa ter direito.
               </p>
-              <p class="font-serif text-xl text-ink italic">Cada pessoa é única, e cada caso merece uma análise cuidadosa e honesta.</p>
+              <p class="font-serif text-lg text-ink italic">Cada pessoa é única, e cada caso merece uma análise cuidadosa e honesta.</p>
             </div>
             <ul class="mt-8 space-y-3 border-t border-sand pt-8 text-base">
-              <li class="flex items-center gap-3 before:h-1.5 before:w-1.5 before:shrink-0 before:rotate-45 before:bg-bronze">[formação]</li>
-              <li class="flex items-center gap-3 before:h-1.5 before:w-1.5 before:shrink-0 before:rotate-45 before:bg-bronze">[especializações]</li>
-              <li class="flex items-center gap-3 before:h-1.5 before:w-1.5 before:shrink-0 before:rotate-45 before:bg-bronze">[atendimento online em todo o Brasil e presencial em cidade/UF]</li>
+              <li class="flex items-start gap-3 before:mt-2.5 before:h-1.5 before:w-1.5 before:shrink-0 before:rotate-45 before:bg-bronze">Graduado em Direito pela Universidade São Judas Tadeu</li>
+              <li class="flex items-start gap-3 before:mt-2.5 before:h-1.5 before:w-1.5 before:shrink-0 before:rotate-45 before:bg-bronze">Pós-graduado em Gestão Pública com ênfase em Seguridade Social, Direito Previdenciário: Prática Previdenciária, Processo Administrativo do INSS e Regime Próprio da Previdência Social</li>
+              <li class="flex items-start gap-3 before:mt-2.5 before:h-1.5 before:w-1.5 before:shrink-0 before:rotate-45 before:bg-bronze">Aperfeiçoamento em Aposentadoria da Pessoa com Deficiência (PcD), Aposentadoria Especial e Aposentadoria do Servidor Público</li>
+              <li class="flex items-start gap-3 before:mt-2.5 before:h-1.5 before:w-1.5 before:shrink-0 before:rotate-45 before:bg-bronze">Atendimento online em todo o Brasil e presencial em São Paulo/SP</li>
             </ul>
-            <a href="#analise" class="btn-cta mt-10">Quero falar com o Dr. Silvio Santana</a>
           </div>
         </div>
       </section>
 
-      <!-- ============ Seção 7 — Como funciona o atendimento ============ -->
+      <!-- ============ Seção 7 — Como funciona o atendimento (linha do tempo animada) ============ -->
       <section id="atendimento" class="bg-ivory">
-        <div class="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+        <div class="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <div class="text-center">
             <p class="eyebrow eyebrow-center">Passo a passo</p>
-            <h2 class="section-title mt-5">Como funciona o atendimento</h2>
+            <h2 class="section-title mt-3">Como funciona o atendimento</h2>
           </div>
-          <ol class="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            <li class="rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
-              <span class="font-serif text-5xl font-medium text-bronze">01</span>
-              <p class="mt-5 font-serif text-2xl font-medium text-ink">Conte sua história.</p>
-              <p class="mt-3 text-base leading-relaxed text-stone">Responda as perguntas iniciais e fale com a gente pelo WhatsApp.</p>
+
+          <!-- A linha se preenche de bronze e cada etapa "acende" em sequência (main.js adiciona .passos-ativo) -->
+          <ol class="passos mt-8 md:mt-10">
+            <li class="passo" style="--i: 0">
+              <span class="passo__no"><span>1</span></span>
+              <div>
+                <p class="passo__titulo">Conte sua história</p>
+                <p class="passo__texto">Chame a gente no WhatsApp e explique a sua situação.</p>
+              </div>
             </li>
-            <li class="rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
-              <span class="font-serif text-5xl font-medium text-bronze">02</span>
-              <p class="mt-5 font-serif text-2xl font-medium text-ink">Analisamos seu histórico.</p>
-              <p class="mt-3 text-base leading-relaxed text-stone">Verificamos suas contribuições, sua condição e os documentos que você tiver.</p>
+            <li class="passo" style="--i: 1">
+              <span class="passo__no"><span>2</span></span>
+              <div>
+                <p class="passo__titulo">Analisamos seu histórico</p>
+                <p class="passo__texto">Contribuições, condição e documentos que você tiver.</p>
+              </div>
             </li>
-            <li class="rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
-              <span class="font-serif text-5xl font-medium text-bronze">03</span>
-              <p class="mt-5 font-serif text-2xl font-medium text-ink">Explicamos as possibilidades.</p>
-              <p class="mt-3 text-base leading-relaxed text-stone">Você entende, com clareza, quais caminhos podem existir no seu caso.</p>
+            <li class="passo" style="--i: 2">
+              <span class="passo__no"><span>3</span></span>
+              <div>
+                <p class="passo__titulo">Explicamos as possibilidades</p>
+                <p class="passo__texto">Com clareza, quais caminhos existem no seu caso.</p>
+              </div>
             </li>
-            <li class="rounded-3xl bg-white p-8 transition duration-300 hover:-translate-y-1">
-              <span class="font-serif text-5xl font-medium text-bronze">04</span>
-              <p class="mt-5 font-serif text-2xl font-medium text-ink">Você decide.</p>
-              <p class="mt-3 text-base leading-relaxed text-stone">Com todas as informações em mãos, você escolhe os próximos passos, sem pressão.</p>
+            <li class="passo" style="--i: 3">
+              <span class="passo__no"><span>4</span></span>
+              <div>
+                <p class="passo__titulo">Você decide</p>
+                <p class="passo__texto">Com tudo em mãos, escolhe os próximos passos, sem pressão.</p>
+              </div>
             </li>
           </ol>
-          <p class="mx-auto mt-16 max-w-2xl text-center font-serif text-2xl leading-snug text-ink italic">
+
+          <p class="mx-auto mt-8 max-w-2xl text-center font-serif text-base leading-snug text-ink italic md:mt-10 md:text-lg">
             Não se preocupe se ainda não tiver todos os documentos. Nós orientamos você sobre o que for necessário.
           </p>
-          <div class="mt-10 text-center">
-            <a href="#analise" class="btn-cta">Quero analisar meu caso</a>
-          </div>
         </div>
       </section>
 
       <!-- ============ Seção 8 — FAQ ============ -->
       <!-- [Nota] O Silvio deve revisar o FAQ antes da publicação. -->
       <section id="duvidas" class="bg-white">
-        <div class="mx-auto max-w-3xl px-5 py-20 md:py-28">
+        <div class="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <div class="text-center">
             <p class="eyebrow eyebrow-center">Dúvidas</p>
-            <h2 class="section-title mt-5">Perguntas frequentes</h2>
+            <h2 class="section-title mt-3">Perguntas frequentes</h2>
           </div>
-          <div class="mt-14 space-y-3">
-            <details class="group rounded-2xl border border-sand bg-white px-6 transition open:border-bronze/40 open:bg-ivory md:px-8">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 class="font-serif text-xl font-medium text-ink md:text-[1.4rem]">Tenho problema na coluna. Posso me aposentar como pessoa com deficiência?</h3>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-bronze text-xl text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
+          <div class="faq-colunas mt-7 md:mt-9">
+            <details class="group mb-2 break-inside-avoid rounded-xl border border-sand bg-white px-4 transition open:border-bronze/40 open:bg-ivory md:px-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-[0.95rem] leading-snug font-medium text-ink md:text-base">Tenho problema na coluna. Posso me aposentar como pessoa com deficiência?</h3>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bronze text-base text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
               </summary>
-              <p class="pr-14 pb-7 leading-relaxed text-graphite/85">
+              <p class="pr-8 pb-4 text-sm leading-relaxed text-graphite/85">
                 Depende. Problemas como hérnia de disco ou artrose, por si só, não garantem o direito. O que se avalia é se a condição é de longo prazo e se gera limitações reais no trabalho e no dia a dia. Por isso, é importante analisar o seu caso.
               </p>
             </details>
-            <details class="group rounded-2xl border border-sand bg-white px-6 transition open:border-bronze/40 open:bg-ivory md:px-8">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 class="font-serif text-xl font-medium text-ink md:text-[1.4rem]">Tenho visão monocular. Tenho direito à aposentadoria da pessoa com deficiência?</h3>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-bronze text-xl text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
+            <details class="group mb-2 break-inside-avoid rounded-xl border border-sand bg-white px-4 transition open:border-bronze/40 open:bg-ivory md:px-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-[0.95rem] leading-snug font-medium text-ink md:text-base">Tenho visão monocular. Tenho direito à aposentadoria da pessoa com deficiência?</h3>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bronze text-base text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
               </summary>
-              <p class="pr-14 pb-7 leading-relaxed text-graphite/85">
+              <p class="pr-8 pb-4 text-sm leading-relaxed text-graphite/85">
                 A visão monocular é reconhecida por lei como deficiência visual. Isso pode ser relevante para a sua aposentadoria, mas o direito e o grau da deficiência dependem de avaliação e do seu histórico de contribuições.
               </p>
             </details>
-            <details class="group rounded-2xl border border-sand bg-white px-6 transition open:border-bronze/40 open:bg-ivory md:px-8">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 class="font-serif text-xl font-medium text-ink md:text-[1.4rem]">Nunca tive laudo dizendo que sou PcD. Mesmo assim posso ter direito?</h3>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-bronze text-xl text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
+            <details class="group mb-2 break-inside-avoid rounded-xl border border-sand bg-white px-4 transition open:border-bronze/40 open:bg-ivory md:px-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-[0.95rem] leading-snug font-medium text-ink md:text-base">Nunca tive laudo dizendo que sou PcD. Mesmo assim posso ter direito?</h3>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bronze text-base text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
               </summary>
-              <p class="pr-14 pb-7 leading-relaxed text-graphite/85">
+              <p class="pr-8 pb-4 text-sm leading-relaxed text-graphite/85">
                 Sim, é possível. Muitas pessoas nunca tiveram esse reconhecimento formal. O INSS faz uma avaliação médica e social própria, e documentos como exames, receitas e relatórios médicos ajudam a comprovar a sua condição.
               </p>
             </details>
-            <details class="group rounded-2xl border border-sand bg-white px-6 transition open:border-bronze/40 open:bg-ivory md:px-8">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 class="font-serif text-xl font-medium text-ink md:text-[1.4rem]">Tive a deficiência só em parte da minha vida profissional. Isso conta?</h3>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-bronze text-xl text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
+            <details class="group mb-2 break-inside-avoid rounded-xl border border-sand bg-white px-4 transition open:border-bronze/40 open:bg-ivory md:px-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-[0.95rem] leading-snug font-medium text-ink md:text-base">Tive a deficiência só em parte da minha vida profissional. Isso conta?</h3>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bronze text-base text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
               </summary>
-              <p class="pr-14 pb-7 leading-relaxed text-graphite/85">
+              <p class="pr-8 pb-4 text-sm leading-relaxed text-graphite/85">
                 Pode contar. A lei permite considerar os períodos trabalhados com e sem deficiência, com regras de ajuste do tempo. Cada situação precisa ser calculada individualmente.
               </p>
             </details>
-            <details class="group rounded-2xl border border-sand bg-white px-6 transition open:border-bronze/40 open:bg-ivory md:px-8">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 class="font-serif text-xl font-medium text-ink md:text-[1.4rem]">Preciso parar de trabalhar para me aposentar como PcD?</h3>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-bronze text-xl text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
+            <details class="group mb-2 break-inside-avoid rounded-xl border border-sand bg-white px-4 transition open:border-bronze/40 open:bg-ivory md:px-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-[0.95rem] leading-snug font-medium text-ink md:text-base">Preciso parar de trabalhar para me aposentar como PcD?</h3>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bronze text-base text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
               </summary>
-              <p class="pr-14 pb-7 leading-relaxed text-graphite/85">
+              <p class="pr-8 pb-4 text-sm leading-relaxed text-graphite/85">
                 Não. Diferente da aposentadoria por incapacidade, a aposentadoria da pessoa com deficiência não exige que você esteja incapaz de trabalhar.
               </p>
             </details>
-            <details class="group rounded-2xl border border-sand bg-white px-6 transition open:border-bronze/40 open:bg-ivory md:px-8">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 class="font-serif text-xl font-medium text-ink md:text-[1.4rem]">Fiquei com sequelas de um acidente. Posso me aposentar como PcD?</h3>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-bronze text-xl text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
+            <details class="group mb-2 break-inside-avoid rounded-xl border border-sand bg-white px-4 transition open:border-bronze/40 open:bg-ivory md:px-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-[0.95rem] leading-snug font-medium text-ink md:text-base">Fiquei com sequelas de um acidente. Posso me aposentar como PcD?</h3>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bronze text-base text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
               </summary>
-              <p class="pr-14 pb-7 leading-relaxed text-graphite/85">
+              <p class="pr-8 pb-4 text-sm leading-relaxed text-graphite/85">
                 Sequelas que causam limitações de longo prazo podem ser consideradas. É preciso analisar quando o acidente aconteceu, quais limitações ficaram e o seu tempo de contribuição.
               </p>
             </details>
-            <details class="group rounded-2xl border border-sand bg-white px-6 transition open:border-bronze/40 open:bg-ivory md:px-8">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 class="font-serif text-xl font-medium text-ink md:text-[1.4rem]">Quanto tempo preciso ter trabalhado?</h3>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-bronze text-xl text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
+            <details class="group mb-2 break-inside-avoid rounded-xl border border-sand bg-white px-4 transition open:border-bronze/40 open:bg-ivory md:px-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-[0.95rem] leading-snug font-medium text-ink md:text-base">Quanto tempo preciso ter trabalhado?</h3>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bronze text-base text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
               </summary>
-              <p class="pr-14 pb-7 leading-relaxed text-graphite/85">
+              <p class="pr-8 pb-4 text-sm leading-relaxed text-graphite/85">
                 Depende do grau da deficiência e do caminho escolhido: por tempo de contribuição (de 20 a 33 anos) ou por idade (60 anos para homens e 55 para mulheres, com 15 anos de contribuição). Veja a tabela acima.
               </p>
             </details>
-            <details class="group rounded-2xl border border-sand bg-white px-6 transition open:border-bronze/40 open:bg-ivory md:px-8">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 class="font-serif text-xl font-medium text-ink md:text-[1.4rem]">Quanto custa a análise inicial?</h3>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-bronze text-xl text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
+            <details class="group mb-2 break-inside-avoid rounded-xl border border-sand bg-white px-4 transition open:border-bronze/40 open:bg-ivory md:px-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-[0.95rem] leading-snug font-medium text-ink md:text-base">Quanto custa a análise inicial?</h3>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-bronze text-base text-bronze-dark transition duration-300 group-open:rotate-45 group-open:bg-bronze group-open:text-ink" aria-hidden="true">+</span>
               </summary>
-              <p class="pr-14 pb-7 leading-relaxed text-graphite/85">[Definir com o cliente.]</p>
+              <p class="pr-8 pb-4 text-sm leading-relaxed text-graphite/85">A análise inicial é gratuita. Você conta a sua história pelo WhatsApp e a nossa equipe avalia o seu caso sem nenhum custo.</p>
             </details>
-          </div>
-          <div class="mt-14 text-center">
-            <a href="#analise" class="btn-cta">Quero analisar meu caso</a>
           </div>
         </div>
       </section>
 
       <!-- ============ Seção 9 — CTA final ============ -->
-      <section id="contato" class="bg-studio on-dark overflow-hidden border-t border-bronze/25">
-        <div class="mx-auto grid max-w-7xl items-end gap-10 px-5 pt-20 md:px-8 md:pt-24 lg:grid-cols-[1.4fr_1fr]">
-          <div class="pb-20 lg:pb-24">
+      <section id="contato" class="bg-studio on-dark relative z-10 -mt-6 overflow-hidden rounded-t-3xl md:-mt-14 md:rounded-t-[3.5rem] lg:overflow-visible lg:[clip-path:inset(0_0_-100vh_0_round_3.5rem_3.5rem_0_0)]">
+        <div class="relative mx-auto grid max-w-7xl items-end gap-4 px-5 pt-4 md:px-8 md:pt-14 lg:grid-cols-[1.4fr_1fr] lg:gap-10">
+          <!-- Foto no celular: aparece primeiro, igual ao topo da página (no computador fica a foto do canto, abaixo) -->
+          <img
+            src="/images/silvio-hero-800.webp"
+            alt=""
+            width="1066"
+            height="1600"
+            loading="lazy"
+            class="photo-blend mx-auto -mt-8 -mb-16 w-full max-w-[16rem] sm:max-w-[20rem] lg:hidden"
+          />
+          <div class="pb-12 lg:pb-14">
             <p class="eyebrow">Sua história importa</p>
-            <h2 class="section-title mt-5">Você tem uma limitação. Nós queremos entender a sua história.</h2>
-            <p class="mt-7 max-w-2xl leading-relaxed text-ivory/75">
+            <h2 class="section-title mt-3">Você tem uma limitação. Nós queremos entender a sua história.</h2>
+            <p class="mt-4 max-w-2xl text-[0.95rem] leading-relaxed text-ivory/75">
               Você pode ter passado anos trabalhando com uma limitação, deficiência ou condição que trouxe dificuldades para a sua vida profissional. Essa história pode ser importante para a análise da sua aposentadoria. Conte o que aconteceu. Nós analisaremos o seu histórico previdenciário e verificaremos quais possibilidades podem existir para o seu caso.
             </p>
-            <a href="#analise" class="btn-cta mt-10">Quero analisar meu caso</a>
+            <a href="https://wa.me/" data-whatsapp="cta-10" target="_blank" rel="noopener" class="btn-cta btn-sm mt-6">Quero analisar meu caso</a>
           </div>
           <img
-            src="/images/silvio-cta.webp"
-            alt="Dr. Silvio Santana sorrindo, sentado à mesa"
+            src="/images/silvio-hero-800.webp"
+            srcset="/images/silvio-hero-800.webp 800w, /images/silvio-hero-1200.webp 1200w"
+            sizes="(min-width: 1024px) 40vw, 1px"
+            alt="Silvio Santana, advogado previdenciário"
             width="1066"
-            height="1392"
+            height="1600"
             loading="lazy"
-            class="photo-blend hidden w-full lg:block"
+            class="photo-blend pointer-events-none absolute right-8 bottom-0 hidden w-[26rem] translate-y-[30%] lg:block xl:right-16"
           />
         </div>
       </section>
     </main>
 
     <!-- ============ Seção 10 — Rodapé ============ -->
-    <footer class="bg-ink pt-16 pb-32 text-base text-ivory/60 md:pb-16">
+    <footer class="rodape relative z-20">
       <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-          <div class="flex items-center gap-4">
-            <img src="/images/logo.webp" alt="" width="56" height="56" loading="lazy" class="h-14 w-14" />
-            <span class="leading-tight">
-              <span class="block font-serif text-xl text-ivory">Dr. Silvio Santana</span>
-              <span class="block text-sm tracking-[0.15em] uppercase">Advogado Previdenciarista · [OAB/UF nº]</span>
-            </span>
+        <div class="grid grid-cols-2 gap-x-6 gap-y-9 border-t border-ivory/10 pt-10 md:gap-10 md:pt-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-8">
+          <!-- Marca -->
+          <div class="col-span-2 md:col-span-1">
+            <div class="flex items-center gap-3">
+              <img src="/images/logo.webp" alt="" width="48" height="48" loading="lazy" class="h-12 w-12" />
+              <span class="leading-tight">
+                <span class="block font-serif text-lg text-ivory">Silvio Santana</span>
+                <span class="block text-[0.68rem] font-semibold tracking-[0.18em] text-bronze-light uppercase">Advogado Previdenciário</span>
+              </span>
+            </div>
+            <p class="mt-4 max-w-xs text-sm leading-relaxed">Aposentadoria da pessoa com deficiência, com análise individual e orientação clara em cada caso.</p>
+            <p class="mt-4 inline-flex items-center gap-2 rounded-full border border-bronze/30 px-3 py-1 text-xs text-bronze-light">OAB/SP 493.305</p>
           </div>
-          <div class="space-y-2 md:text-right">
-            <p>[Endereço]</p>
-            <p>[Telefone/WhatsApp] · [E-mail]</p>
-            <nav aria-label="Links legais" class="flex gap-6 pt-2 md:justify-end">
-              <a href="/politica-de-privacidade.html" class="underline-offset-4 hover:text-bronze-light hover:underline">Política de Privacidade</a>
-              <a href="/termos-de-uso.html" class="underline-offset-4 hover:text-bronze-light hover:underline">Termos de Uso</a>
-            </nav>
+
+          <!-- Navegação -->
+          <nav aria-label="Rodapé">
+            <p class="rodape__titulo">Navegação</p>
+            <ul class="rodape__lista">
+              <li><a href="#situacoes">Situações</a></li>
+              <li><a href="#regras">As regras</a></li>
+              <li><a href="#sobre">Quem analisa</a></li>
+              <li><a href="#atendimento">Atendimento</a></li>
+              <li><a href="#duvidas">Dúvidas</a></li>
+            </ul>
+          </nav>
+
+          <!-- Contato -->
+          <div class="order-last col-span-2 md:order-none md:col-span-1">
+            <p class="rodape__titulo">Contato</p>
+            <ul class="rodape__lista">
+              <li>
+                <a href="https://wa.me/" data-whatsapp="rodape-telefone" target="_blank" rel="noopener">
+                  <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.81 11.81 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41"/></svg>
+                  (11) 92722-2548
+                </a>
+              </li>
+              <li>
+                <a href="mailto:silvio.santana@adv.oabsp.org.br">
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                  <span class="break-all">silvio.santana@adv.oabsp.org.br</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/silviosantana.adv/" target="_blank" rel="noopener">
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>
+                  @silviosantana.adv
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Atendimento -->
+          <div>
+            <p class="rodape__titulo">Atendimento</p>
+            <ul class="rodape__lista">
+              <li><span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Presencial em São Paulo/SP</span></li>
+              <li><span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Online em todo o Brasil</span></li>
+            </ul>
           </div>
         </div>
-        <div class="mt-12 border-t border-ivory/10 pt-8 text-sm leading-relaxed">
-          <p>As informações deste site têm caráter informativo e não substituem a análise individual de cada caso. Não há garantia de resultado.</p>
-          <p class="mt-2">© <span id="ano"></span> Dr. Silvio Santana. Todos os direitos reservados.</p>
+
+        <div class="mt-10 flex flex-col gap-4 border-t border-ivory/10 py-6 text-xs leading-relaxed md:flex-row md:items-center md:justify-between">
+          <p class="max-w-2xl text-ivory/45">As informações deste site têm caráter informativo e não substituem a análise individual de cada caso. Não há garantia de resultado.</p>
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-1 text-ivory/55">
+            <span>© <span id="ano"></span> Silvio Santana</span>
+            <a href="/politica-de-privacidade.html" class="hover:text-bronze-light">Política de Privacidade</a>
+            <a href="/termos-de-uso.html" class="hover:text-bronze-light">Termos de Uso</a>
+          </div>
         </div>
       </div>
     </footer>
 
-    <!-- Botão fixo no mobile -->
-    <div id="barra-fixa" class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-bronze/30 bg-ink/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur transition-transform duration-300 md:hidden" aria-hidden="true">
-      <a href="#analise" class="btn-cta w-full justify-between" tabindex="-1">Analisar meu caso</a>
+    <!--
+      Widget de WhatsApp: botão flutuante verde. Ao carregar a página, abre um balão de chat
+      que mostra "digitando..." e depois a mensagem da equipe (lógica em main.js).
+    -->
+    <div id="whats-widget" class="whats-widget">
+      <div class="whats-chat" id="whats-chat" role="dialog" aria-labelledby="whats-chat-titulo" hidden>
+        <div class="whats-chat__topo">
+          <img src="/images/logo.webp" alt="" width="36" height="36" />
+          <span>
+            <strong id="whats-chat-titulo">Equipe Silvio Santana</strong>
+            <small><i aria-hidden="true"></i>Online agora</small>
+          </span>
+          <button type="button" class="whats-chat__fechar" aria-label="Fechar conversa"></button>
+        </div>
+        <div class="whats-chat__corpo" aria-live="polite">
+          <div class="whats-chat__digitando" aria-label="Digitando"><span></span><span></span><span></span></div>
+          <p class="whats-chat__msg" hidden>
+            Olá! Tudo bem? 👋<br />
+            Quer saber se a sua condição de saúde pode fazer diferença na sua aposentadoria? Conte a sua história pra gente.
+          </p>
+        </div>
+        <a href="https://wa.me/" data-whatsapp="widget-chat" target="_blank" rel="noopener" class="whats-chat__botao">Responder no WhatsApp</a>
+      </div>
+
+      <a href="https://wa.me/" data-whatsapp="widget-botao" target="_blank" rel="noopener" class="whats-fab" aria-label="Conversar no WhatsApp">
+        <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.81 11.81 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41"/></svg>
+        <span class="whats-fab__badge" aria-hidden="true">1</span>
+      </a>
     </div>
   </body>
 </html>

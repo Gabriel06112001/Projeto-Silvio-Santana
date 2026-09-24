@@ -17,15 +17,20 @@ const kb = (arquivo) => `${Math.round(statSync(arquivo).size / 1024)} KB`
 
 // ---------- Fotos (WebP) ----------
 const fotos = [
+  // Qualidade alta: as fotos do Silvio saem na resolução original (sem ampliar) e os cards em 1200px (nítidos em telas retina)
   ['silvio-hero.jpg', 'silvio-hero-800.webp', 800],
   ['silvio-hero.jpg', 'silvio-hero-1200.webp', 1200],
-  ['silvio-sobre.jpg', 'silvio-sobre.webp', 900],
-  ['silvio-cta.jpg', 'silvio-cta.webp', 900],
-  ...['coluna', 'visao', 'audicao', 'mobilidade', 'acidente', 'mental', 'outra'].map((n) => [`cards/${n}.jpg`, `cards/${n}.webp`, 900]),
+  ['silvio-sobre.jpg', 'silvio-sobre.webp', 1400],
+  ['silvio-cta.jpg', 'silvio-cta.webp', 1400],
+  ...['coluna', 'visao', 'audicao', 'mobilidade', 'acidente', 'mental', 'outra'].map((n) => [`cards/${n}.jpg`, `cards/${n}.webp`, 1200]),
 ]
 for (const [entrada, saida, largura] of fotos) {
   const arquivo = join(destino, saida)
-  await sharp(join(origem, entrada)).resize({ width: largura, withoutEnlargement: true }).webp({ quality: 78 }).toFile(arquivo)
+  await sharp(join(origem, entrada))
+    .resize({ width: largura, withoutEnlargement: true, kernel: 'lanczos3' })
+    .sharpen({ sigma: 0.5 })
+    .webp({ quality: 88, smartSubsample: true, effort: 6 })
+    .toFile(arquivo)
   console.log(`${saida.padEnd(24)} ${kb(arquivo)}`)
 }
 
@@ -52,7 +57,7 @@ const logo = await sharp(logoOriginal)
   .composite([{ input: mascara, blend: 'dest-in' }])
   .png()
   .toBuffer()
-await sharp(logo).resize(256, 256).webp({ quality: 90 }).toFile(join(destino, 'logo.webp'))
+await sharp(logo).resize(384, 384).webp({ quality: 95 }).toFile(join(destino, 'logo.webp'))
 await sharp(logo).resize(64, 64).png({ compressionLevel: 9 }).toFile(join(raiz, 'public', 'favicon.png'))
 await sharp(logo).resize(180, 180).png({ compressionLevel: 9 }).toFile(join(raiz, 'public', 'apple-touch-icon.png'))
 console.log('logo.webp, favicon.png, apple-touch-icon.png')
@@ -66,12 +71,12 @@ const texto = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.
   <rect x="70" y="92" width="56" height="2" fill="#d2b07a"/>
   <text x="70" y="140" font-family="Georgia, serif" font-size="22" letter-spacing="4" fill="#d2b07a">APOSENTADORIA DA PESSOA COM DEFICIÊNCIA</text>
   <text font-family="Georgia, serif" font-size="54" fill="#f7f4ee"><tspan x="70" y="240">Sua condição de saúde</tspan><tspan x="70" y="308">pode fazer diferença</tspan><tspan x="70" y="376">na sua aposentadoria.</tspan></text>
-  <text x="70" y="500" font-family="Georgia, serif" font-size="34" fill="#f7f4ee">Dr. Silvio Santana</text>
-  <text x="70" y="540" font-family="Arial, sans-serif" font-size="18" letter-spacing="4" fill="#d2b07a">ADVOGADO PREVIDENCIARISTA</text>
+  <text x="70" y="500" font-family="Georgia, serif" font-size="34" fill="#f7f4ee">Silvio Santana</text>
+  <text x="70" y="540" font-family="Arial, sans-serif" font-size="18" letter-spacing="4" fill="#d2b07a">ADVOGADO PREVIDENCIÁRIO</text>
 </svg>`)
 const og = join(destino, 'og-image.jpg')
 await sharp({ create: { width: W, height: H, channels: 3, background: '#242a28' } })
   .composite([{ input: foto, left: 680, top: 0 }, { input: texto, left: 0, top: 0 }])
-  .jpeg({ quality: 82 })
+  .jpeg({ quality: 90, mozjpeg: true })
   .toFile(og)
 console.log(`og-image.jpg             ${kb(og)}`)
