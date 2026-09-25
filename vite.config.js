@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 import { readdirSync } from 'node:fs'
+import { artigos } from './scripts/artigos-conteudo.mjs'
 
 const paginasArtigos = Object.fromEntries(
   readdirSync('artigos')
@@ -33,8 +34,9 @@ function seo(siteUrl) {
     <lastmod>${hoje}</lastmod>
     <priority>0.7</priority>
   </url>
-${Object.values(paginasArtigos).map((f) => `  <url>
-    <loc>${siteUrl}/${f}</loc>
+${artigos.map((a) => `  <url>
+    <loc>${siteUrl}/artigos/${a.slug}.html</loc>
+    <lastmod>${a.data}</lastmod>
     <priority>0.6</priority>
   </url>`).join('\n')}
 </urlset>
