@@ -1,0 +1,109 @@
+// Gera feedbacks.html no padrão visual do site a partir de scripts/feedbacks-conteudo.mjs.
+// Uso: npm run feedbacks   (roda automaticamente antes do build)
+
+import { writeFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, join } from 'node:path'
+import { feedbacks } from './feedbacks-conteudo.mjs'
+
+const raiz = join(dirname(fileURLToPath(import.meta.url)), '..')
+const esc = (t = '') => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
+const reais = feedbacks.filter((f) => !f.exemplo && f.texto)
+
+const cards = reais.length
+  ? reais
+      .map(
+        (f) => `            <figure class="feedback">
+              <span class="feedback__aspas" aria-hidden="true">“</span>
+              <blockquote class="feedback__texto">${esc(f.texto)}</blockquote>
+              <figcaption class="feedback__autor">
+                <span><strong>${esc(f.autor)}</strong>${f.local ? `<small>${esc(f.local)}</small>` : ''}</span>
+                ${f.tema ? `<span class="feedback__tema">${esc(f.tema)}</span>` : ''}
+              </figcaption>
+            </figure>`
+      )
+      .join('\n')
+  : `            <p class="feedbacks-vazio">Em breve, os relatos de quem já passou pela análise do seu caso com a nossa equipe.</p>`
+
+const html = `<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedbacks | Silvio Santana · Advogado Previdenciário</title>
+    <meta name="description" content="O que dizem as pessoas atendidas por Silvio Santana, advogado previdenciário." />
+    <!-- [Nota] noindex até o Silvio aprovar a publicação dos feedbacks -->
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#242a28" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+    <script>document.documentElement.classList.add('js')</script>
+    <link rel="stylesheet" href="/src/style.css" />
+    <script type="module" src="/src/artigos.js"></script>
+  </head>
+  <body>
+    <!-- Página gerada por scripts/gerar-feedbacks.mjs — edite os feedbacks em scripts/feedbacks-conteudo.mjs -->
+    <header id="site-header" class="site-header">
+      <div class="site-header__bar">
+        <a href="/" class="brand" aria-label="Silvio Santana — voltar ao site">
+          <span class="brand__mark"><img src="/images/logo.webp" alt="" width="44" height="44" /></span>
+          <span class="brand__text">
+            <span class="brand__name">Silvio Santana</span>
+            <span class="brand__role"><span>Advogado Previdenciário</span></span>
+          </span>
+        </a>
+        <a href="/" class="hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-ivory/75 transition hover:text-ivory sm:inline-flex">← Voltar ao site</a>
+        <a href="https://wa.me/" data-whatsapp="feedbacks-cabecalho" target="_blank" rel="noopener" class="btn-cta btn-sm shrink-0 whitespace-nowrap"><span class="sm:hidden">WhatsApp</span><span class="hidden sm:inline">Falar com a equipe</span></a>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="bg-studio on-dark">
+        <div class="mx-auto max-w-5xl px-5 pt-32 pb-20 text-center md:px-8 md:pt-40 md:pb-24">
+          <p class="eyebrow eyebrow-center">Feedbacks</p>
+          <h1 class="mt-4 font-serif text-[2rem] leading-tight font-medium text-ivory md:text-[2.8rem]">O que dizem as pessoas que atendemos</h1>
+          <p class="mx-auto mt-4 max-w-2xl text-[0.95rem] leading-relaxed text-ivory/75 md:text-base">Relatos sobre a experiência de atendimento com a nossa equipe.</p>
+        </div>
+      </section>
+
+      <section class="relative z-10 -mt-6 rounded-t-3xl bg-ivory md:-mt-14 md:rounded-t-[3.5rem]">
+        <div class="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+          <div class="feedbacks-grade">
+${cards}
+          </div>
+          <p class="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-stone">
+            Relatos publicados com autorização, identificados apenas por iniciais para preservar a privacidade. Cada caso é único e depende de análise individual; não há garantia de resultado.
+          </p>
+        </div>
+      </section>
+
+      <section class="bg-studio on-dark">
+        <div class="mx-auto flex max-w-5xl flex-col items-center gap-5 px-5 py-12 text-center md:flex-row md:justify-between md:px-8 md:py-14 md:text-left">
+          <div>
+            <h2 class="font-serif text-2xl text-ivory md:text-[1.9rem]">Quer entender o seu caso?</h2>
+            <p class="mt-2 text-[0.95rem] text-ivory/70">Fale com a nossa equipe pelo WhatsApp.</p>
+          </div>
+          <a href="https://wa.me/" data-whatsapp="feedbacks-cta" target="_blank" rel="noopener" class="btn-cta shrink-0">Quero analisar meu caso</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape relative z-20">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <div class="flex flex-col gap-2 border-t border-ivory/10 py-6 text-xs text-ivory/55 md:flex-row md:justify-between">
+          <span>© <span id="ano"></span> Silvio Santana · OAB/SP 493.305</span>
+          <span class="flex gap-5">
+            <a href="/" class="hover:text-bronze-light">Início</a>
+            <a href="/artigos.html" class="hover:text-bronze-light">Artigos</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+`
+writeFileSync(join(raiz, 'feedbacks.html'), html)
+console.log(`feedbacks.html (${reais.length} feedbacks)`)

@@ -34,7 +34,9 @@
     <link
       rel="preload"
       as="image"
-      href="/images/silvio-cta.webp"
+      href="/images/silvio-hero-800.webp"
+      imagesrcset="/images/silvio-hero-800.webp 800w, /images/silvio-hero-1200.webp 1200w"
+      imagesizes="(min-width: 1024px) 432px, (min-width: 640px) 320px, 256px"
       fetchpriority="high"
     />
 
@@ -245,12 +247,14 @@
               </ul>
           </div>
           <img
-            src="/images/silvio-cta.webp"
-            alt="Silvio Santana sorrindo, sentado à mesa"
+            src="/images/silvio-hero-800.webp"
+            srcset="/images/silvio-hero-800.webp 800w, /images/silvio-hero-1200.webp 1200w"
+            sizes="(min-width: 1024px) 432px, (min-width: 640px) 320px, 256px"
+            alt="Silvio Santana, advogado previdenciário"
             width="1066"
-            height="1392"
+            height="1600"
             fetchpriority="high"
-            class="photo-blend order-first mx-auto -mt-8 -mb-6 w-full max-w-[16rem] sm:max-w-[20rem] lg:order-none md:max-w-sm lg:-mt-4 lg:mb-0 lg:max-w-[27rem] lg:-translate-y-10"
+            class="photo-blend photo-blend--hero order-first mx-auto -mt-8 w-full max-w-[16rem] sm:max-w-[20rem] md:max-w-sm lg:order-none lg:-mt-12 lg:max-w-[27rem] lg:self-end"
           />
         </div>
       </section>
@@ -449,7 +453,7 @@
         <div class="mx-auto grid max-w-5xl items-center gap-8 px-5 py-12 md:grid-cols-[1fr_auto] md:gap-14 md:px-8 md:py-16">
           <div class="text-center md:text-left">
             <p class="eyebrow eyebrow-center md:justify-start md:after:hidden">Em vídeo</p>
-            <h2 class="section-title mt-3 md:!text-[2.4rem] md:!leading-[1.15]">Silvio Santana explica a aposentadoria da pessoa com deficiência</h2>
+            <h2 class="section-title mt-3 md:!text-[2.4rem] md:!leading-[1.15]">Dr. Silvio Santana explica a aposentadoria da pessoa com deficiência</h2>
             <p class="mt-4 text-base text-stone md:text-lg">Em pouco mais de um minuto, entenda quem pode ter direito e por que vale a pena analisar o seu caso.</p>
             <!-- Seta de fluxo: desce e faz a curva para a direita, apontando para o vídeo (desenha-se ao aparecer) -->
             <svg class="seta-fluxo" viewBox="0 0 220 150" fill="none" aria-hidden="true">
@@ -681,10 +685,10 @@
         <div class="relative mx-auto grid max-w-7xl items-end gap-4 px-5 pt-4 md:px-8 md:pt-14 lg:grid-cols-[1.4fr_1fr] lg:gap-10">
           <!-- Foto no celular: aparece primeiro, igual ao topo da página (no computador fica a foto do canto, abaixo) -->
           <img
-            src="/images/silvio-hero-800.webp"
+            src="/images/silvio-cta.webp"
             alt=""
             width="1066"
-            height="1600"
+            height="1392"
             loading="lazy"
             class="photo-blend mx-auto -mt-8 -mb-16 w-full max-w-[16rem] sm:max-w-[20rem] lg:hidden"
           />
@@ -697,14 +701,12 @@
             <a href="https://wa.me/" data-whatsapp="cta-10" target="_blank" rel="noopener" class="btn-cta btn-sm mt-6">Quero analisar meu caso</a>
           </div>
           <img
-            src="/images/silvio-hero-800.webp"
-            srcset="/images/silvio-hero-800.webp 800w, /images/silvio-hero-1200.webp 1200w"
-            sizes="(min-width: 1024px) 40vw, 1px"
-            alt="Silvio Santana, advogado previdenciário"
+            src="/images/silvio-cta.webp"
+            alt="Silvio Santana sorrindo, sentado à mesa"
             width="1066"
-            height="1600"
+            height="1392"
             loading="lazy"
-            class="photo-blend pointer-events-none absolute right-8 bottom-0 hidden w-[26rem] translate-y-[30%] lg:block xl:right-16"
+            class="photo-blend pointer-events-none absolute top-0 right-8 bottom-0 hidden h-full w-auto lg:block xl:right-16"
           />
         </div>
       </section>
@@ -761,6 +763,18 @@
                   @silviosantana.adv
                 </a>
               </li>
+              <li>
+                <a href="/artigos.html">
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h12a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4Z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+                  Artigos
+                </a>
+              </li>
+              <li>
+                <a href="/feedbacks.html">
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  Feedbacks
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -778,8 +792,6 @@
           <p class="max-w-2xl text-ivory/45">As informações deste site têm caráter informativo e não substituem a análise individual de cada caso. Não há garantia de resultado.</p>
           <div class="flex flex-wrap items-center gap-x-5 gap-y-1 text-ivory/55">
             <span>© <span id="ano"></span> Silvio Santana</span>
-            <a href="/politica-de-privacidade.html" class="hover:text-bronze-light">Política de Privacidade</a>
-            <a href="/termos-de-uso.html" class="hover:text-bronze-light">Termos de Uso</a>
           </div>
         </div>
       </div>

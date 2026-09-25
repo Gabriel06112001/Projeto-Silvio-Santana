@@ -26,7 +26,7 @@ document.querySelector('#ano').textContent = new Date().getFullYear()
 // ---------- WhatsApp ----------
 // Todos os botões com [data-whatsapp] abrem a conversa com uma mensagem pronta.
 const MENSAGEM_PADRAO =
-  'Olá, Silvio! Vim pelo site e gostaria de saber se posso ter direito à aposentadoria da pessoa com deficiência.'
+  'Olá, Dr. Silvio! Vim pelo site e gostaria de saber se posso ter direito à aposentadoria da pessoa com deficiência.'
 
 // Texto usado quando a pessoa clica num card de situação (mensagem personalizada)
 const CONDICOES = {
@@ -298,7 +298,7 @@ function abrirPainel(card) {
   painelFoto.src = card.querySelector('.card-photo').src
   const condicao = CONDICOES[id]
   painelWhats.href = linkWhatsApp(
-    `Olá, Silvio! Vim pelo site. Convivo com ${condicao} e gostaria de saber se posso ter direito à aposentadoria da pessoa com deficiência.`
+    `Olá, Dr. Silvio! Vim pelo site. Convivo com ${condicao} e gostaria de saber se posso ter direito à aposentadoria da pessoa com deficiência.`
   )
 
   if (jaAberto) {
